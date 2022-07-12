@@ -1,5 +1,4 @@
 from email.quoprimime import header_check
-import imp
 import time
 import logging
 import stomp
@@ -27,12 +26,8 @@ class Listener(stomp.ConnectionListener):
         Called by the STOMP connection when a CONNECTED frame is
         received
     """
-    def on_connected(self, headers, body):
-        now = int(time.time())
-        log.debug("STOMP connected frame received at  client  %s  ", str(now) + " with headers " + str(headers) +
-                  "and body" + str(body))
-        print("STOMP connected frame received at  client  %s  ", str(now) + " with headers " + str(headers)
-              + "and body" + str(body))
+    def on_connected(self, frame):
+        return super().on_connected(frame)
     
     """Called by the STOMP connection when a TCP/IP connection to the
         STOMP server has been lost.  No messages should be sent via
@@ -49,17 +44,15 @@ class Listener(stomp.ConnectionListener):
         containing the headers and body (so that implementing listeners can pre-process the content).
         :param dict headers: the message headers
         :param body: the message body"""
-    def on_before_message(self, headers, body):
-        log.debug(" Before getting a message header received  : " + str(headers) + " body for the message " + str(body))
-        print(" Before getting a message header received  : " + str(headers) + " body for the message " + str(body))
+    def on_before_message(self, frame):
+        return super().on_before_message(frame)
 
     """ Called by the STOMP connection when a MESSAGE frame is received.
         :param dict headers: a dictionary containing all headers sent by the server as key/value pairs.
         :param body: the frame's payload - the message body.
         """    
-    def on_message(self, headers, body):
-        log.debug("Getting a message header received  : " + str(headers) + " body for the message " + str(body))
-        print("Getting a message header received  : " + str(headers) + " body for the message " + str(body))
+    def on_message(self, frame):
+        return super().on_message(frame)
 
     """ Called by the STOMP connection when a RECEIPT frame is
         received, sent by the server if requested by the client using
@@ -72,11 +65,8 @@ class Listener(stomp.ConnectionListener):
     """Called by the STOMP connection when an ERROR frame is received.
         :param dict headers: a dictionary containing all headers sent by the server as key/value pairs.
         :param body: the frame's payload - usually a detailed error description."""
-    def on_error(self, headers, body):
-        log.debug("Error occurred getting a message header received  : " + str(headers) + " body for the message "
-                  + str(body))
-        print("Error occurred while getting  a message header received  : " + str(headers) + " body for the message "
-              + str(body))
+    def on_error(self, frame):
+        return super().on_error(frame)
 
     """Called by the STOMP connection when it is in the process of sending a message
         :param Frame frame: the frame to be sent"""

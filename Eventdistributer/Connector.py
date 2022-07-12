@@ -22,13 +22,13 @@ class Connection(stomp.Connection):
         self.password=password
         self.host_port= host_port
         self.wait=wait
-        self.stomp_con= stomp.Connection(self.host_and_port)
+        self.stomp_con= stomp.Connection(self.host_port)
     
-    def register_listener(self, listener):
-        self.stomp_con.set_listener(listener, Listener())
+    def register_listener(self, listener_obj, listener_id):
+        self.stomp_con.set_listener(listener_id, listener_obj())
 
     def connect(self):
-        self.stomp_con.start()
+        #self.stomp_con.start()
         self.stomp_con.connect(self.username, self.password, self.wait)
 
     def subscribe_to_topic(self, topic):
