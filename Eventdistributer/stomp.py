@@ -38,11 +38,12 @@ print('started connection')
 conn.connect('admin', 'admin', wait=True)
 print('connected')
 
-conn.subscribe(destination='/queue/test', id=1, ack='auto')
+dest ='/queue/test'
+conn.subscribe(destination=dest, id=1, ack='auto')
 print('subscribed')
 
 message='hello cruel world'
-conn.send(message= message, destination='/queue/test')
+conn.send(message= message, destination=dest)
 print('sent message')
 time.sleep(2)
 print('slept')
