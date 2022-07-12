@@ -1,0 +1,96 @@
+{
+    "pis": [
+        {
+            "id": "192.168.2.228",
+            "id_from_queryformat": 0,
+            "name": "pi",
+            "port": 2235,
+            "pub": [
+                {
+                    "id": "1",
+                    "event_operator": "seq",
+                    "eventtype": [
+                        "a,f,c"
+                    ],
+                    "recieveing_brokers": []
+                },
+                {
+                    "event_operator": "plain",
+                    "eventtype": [
+                        "a"
+                    ],
+                    "recieveing_brokers": [
+                        "4",
+                        "2"
+                    ]
+                }
+            ],
+            "sub": [
+                {
+                    "id": "1",
+                    "eventtype": [
+                        "c"
+                    ],
+                    "oublishing_brokers": [
+                        "9"
+                    ]
+                },
+                {
+                    "id": "2",
+                    "eventtype": [
+                        "b"
+                    ],
+                    "oublishing_brokers": [
+                        "3"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "192.168.2.228",
+            "id_from_queryformat": 0,
+            "name": "pi",
+            "port": 2235,
+            "pub": [
+                {
+                    "id": "1",
+                    "event_operator": "seq",
+                    "eventtype": [
+                        "a,f,c"
+                    ],
+                    "recieveing_brokers": []
+                },
+                {
+                    "event_operator": "plain",
+                    "eventtype": [
+                        "a"
+                    ],
+                    "recieveing_brokers": [
+                        "4",
+                        "2"
+                    ]
+                }
+            ],
+            "sub": [
+                {
+                    "id": "1",
+                    "eventtype": [
+                        "c"
+                    ],
+                    "oublishing_brokers": [
+                        "9"
+                    ]
+                },
+                {
+                    "id": "2",
+                    "eventtype": [
+                        "b"
+                    ],
+                    "oublishing_brokers": [
+                        "3"
+                    ]
+                }
+            ]
+        }
+    ]
+}

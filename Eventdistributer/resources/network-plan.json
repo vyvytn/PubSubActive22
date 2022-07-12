@@ -1,0 +1,71 @@
+{
+    "192.168.2.228": {
+        "id_from_queryformat":0,
+        "name": "pi",
+        "port": 2235,
+        "pub":{
+            "1":{
+                "event_operator":"seq",
+                "eventtype": ["a,f,c"],
+                "recieveing_brokers":[]
+            },
+            "2":{
+                "event_operator":"plain",
+                "eventtype": ["a"],
+                "recieveing_brokers":["4", "2"]
+            },
+            "3":{
+                "event_operator":"plain",
+                "eventtype": ["f"],
+                "recieveing_brokers":["4", "2"]
+            },
+            "4":{
+                "event_operator":"and",
+                "eventtype": ["c,e,b,d,f"],
+                "recieveing_brokers":["4", "2"]
+            }
+        },
+        "sub":{
+            "1":{
+                "eventtype": ["c"],
+                "oublishing_brokers":["9"]
+            },
+            "2":{
+                "eventtype": ["b"],
+                "oublishing_brokers":["3"]
+            },
+            "3":{
+                "eventtype": ["and(cedf)"],
+                "oublishing_brokers":["2"]
+            },            
+            "4":{
+                "eventtype": ["and(cedf)"],
+                "oublishing_brokers":["4"]
+            }
+        }
+    },    
+    "192.168.1.137": {
+        "id_from_queryformat":1,
+        "name": "pi2",
+        "port": 2295,
+        "pub":["and(sebdf)"],
+        "sub":["b", "andcedf", "c"]
+    },    
+    "192.168.2.106": {
+        "id_from_queryformat":2,
+        "name": "pi3",
+        "port": 2277,
+        "pub":{
+            "1":{
+                "event_operator":"and",
+                "eventtype": ["c,e,d,f"],
+                "recieveing_brokers":[0,1,2,3,4,5]
+            },
+            "2":{
+                "event_operator":"and",
+                "eventtype": ["c,e,b,d,f"],
+                "recieveing_brokers":[]}
+            },
+        "sub":["a", "f", "c"]
+    }
+}
