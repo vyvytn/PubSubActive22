@@ -1,61 +1,13 @@
-import stomp
-import time
-import sys
+import Connector
+import Listener
 
-def connect_and_subscribe(conn):
-    conn.connect('guest', 'guest', wait=True)
-    conn.subscribe(destination='/queue/test', id=1, ack='auto')
+broker_con= Connector('admin', 'admin', [('127.0.0.1', 61613)], True)
 
-class Listener(stomp.ConnectionListener):   
-    
-    def __init__(self, conn):
-        self.conn = conn
+broker_con.register_listener(Listener(), 'listenerToTopic')
 
-    def on_error(self, frame):
-        print('received an error "%s"' % frame.body)
+broker_con.connect()
 
-    def on_message(self, frame):
-        print('received a message "%s"' % frame.body)
-        for x in range(10):
-            print(x)
-            time.sleep(1)
-        print('processed message')
+broker_con.subscribe_to_topic('myTestTopic')
 
-    def on_disconnected(self):
-        print('disconnected')
-        connect_and_subscribe(self.conn)
-
-conn = stomp.Connection([('localhost',8161)])
-print('set up Connection')
-
-lstn= Listener()
-conn.set_listener('somename', lstn)
-print('Set up listener')
-
-conn.start()
-print('started connection')
-
-conn.connect('admin', 'admin', wait=True)
-print('connected')
-
-dest ='/queue/test'
-conn.subscribe(destination=dest, id=1, ack='auto')
-print('subscribed')
-
-message='hello cruel world'
-conn.send(message= message, destination=dest)
-print('sent message')
-time.sleep(2)
-print('slept')
-conn.disconnect()
-print('disconnected')
-"""conn = stomp.Connection()
-lst = MyListener()
-conn.set_listener('', lst)
-conn.start()
-conn.connect()
-conn.subscribe(destination='/queue/test', id=1, ack='auto')
-time.sleep(2)
-messages = lst.msg_list
-conn.disconnect()
-return render(request, 'template.html', {'messages': messages})"""
+for i in range(0, 10000, 1):
+    broker_con.publish_to_topic('myTestTopic', ' testing')

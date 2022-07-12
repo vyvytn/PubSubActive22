@@ -1,6 +1,6 @@
 import stomp
 import logging
-
+import Listener
 log= logging.getLogger('Connector.py')
 
 class Singleton(type):
@@ -22,4 +22,20 @@ class Connection(stomp.Connection):
         self.password=password
         self.host_port= host_port
         self.wait=wait
-        self.connection= stomp.Connection(self.host_and_port)
+        self.stomp_con= stomp.Connection(self.host_and_port)
+    
+    def register_listener(self, listener):
+        self.stomp_con.set_listener(listener, Listener())
+
+    def connect(self):
+        self.stomp_con.start()
+        self.stomp_con.connect(self.username, self.password, self.wait)
+
+    def subscribe_to_topic(self, topic):
+        self.stomp_con.subscribe(destination=topic, id='1', ack='auto')
+
+    def publish_to_topic(self, topic, message):
+        self.stomp_con.send(destination=topic, body=message)
+   
+    def disconnect(self):
+            self.stomp_con.disconnect()
