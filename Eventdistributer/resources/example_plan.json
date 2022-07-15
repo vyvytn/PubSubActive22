@@ -1,7 +1,7 @@
 {
     "pis": [
         {
-            "id": "192.168.2.228",
+            "id": "192.168.1.142",
             "id_from_queryformat": 0,
             "name": "pi",
             "port": 2235,
@@ -23,6 +23,26 @@
                         "4",
                         "2"
                     ]
+                },
+                {
+                    "event_operator": "plain",
+                    "eventtype": [
+                        "f"
+                    ],
+                    "recieveing_brokers": [
+                        "4",
+                        "2"
+                    ]
+                },
+                {
+                    "event_operator": "and",
+                    "eventtype": [
+                        "c,e,b,d,f"
+                    ],
+                    "recieveing_brokers": [
+                        "4",
+                        "2"
+                    ]
                 }
             ],
             "sub": [
@@ -31,7 +51,7 @@
                     "eventtype": [
                         "c"
                     ],
-                    "oublishing_brokers": [
+                    "publishing_brokers": [
                         "9"
                     ]
                 },
@@ -40,54 +60,386 @@
                     "eventtype": [
                         "b"
                     ],
-                    "oublishing_brokers": [
+                    "publishing_brokers": [
                         "3"
+                    ]
+                },
+                {
+                    "id": "3",
+                    "eventtype": [
+                        "and(cedf)"
+                    ],
+                    "publishing_brokers": [
+                        "2"
+                    ]
+                },
+                {
+                    "id": "4",
+                    "eventtype": [
+                        "and(cedf)"
+                    ],
+                    "publishing_brokers": [
+                        "4"
                     ]
                 }
             ]
         },
         {
             "id": "192.168.2.228",
-            "id_from_queryformat": 0,
-            "name": "pi",
+            "id_from_queryformat": 1,
+            "name": "pi2",
             "port": 2235,
             "pub": [
                 {
                     "id": "1",
-                    "event_operator": "seq",
+                    "event_operator": "and",
                     "eventtype": [
-                        "a,f,c"
+                        "cebdf"
                     ],
                     "recieveing_brokers": []
-                },
-                {
-                    "event_operator": "plain",
-                    "eventtype": [
-                        "a"
-                    ],
-                    "recieveing_brokers": [
-                        "4",
-                        "2"
-                    ]
                 }
             ],
             "sub": [
                 {
                     "id": "1",
                     "eventtype": [
-                        "c"
+                        "b"
                     ],
-                    "oublishing_brokers": [
-                        "9"
+                    "publishing_brokers": [
+                        "3"
                     ]
                 },
                 {
                     "id": "2",
                     "eventtype": [
+                        "andcedf"
+                    ],
+                    "publishing_brokers": [
+                        "4", "2"
+                    ]
+                }
+            ]
+        },{
+            "id": "192.168.1.143",
+            "id_from_queryformat": 2,
+            "name": "pi3",
+            "port": 2277,
+            "pub": [
+                {
+                    "id": "1",
+                    "event_operator": "plain",
+                    "eventtype": [
+                        "d"
+                    ],
+                    "recieveing_brokers": ["2", "4"]
+                },
+                {
+                    "id": "2",
+                    "event_operator": "and",
+                    "eventtype": [
+                        "c,e,d,f"
+                    ],
+                    "recieveing_brokers": [
+                        "1","2","3","4","5"
+                    ]
+                },
+                {
+                    "id": "3",
+                    "event_operator": "and",
+                    "eventtype": [
+                        "c,e,b,d,f"
+                    ],
+                    "recieveing_brokers": []
+                }
+            ],
+            "sub": [
+                {
+                    "id": "1",
+                    "eventtype": [
+                        "e"
+                    ],
+                    "publishing_brokers": [
+                        "4"
+                    ]
+                },
+                {
+                    "id": "2",
+                    "eventtype": [
+                        "c"
+                    ],
+                    "publishing_brokers": [
+                        "9"
+                    ]
+                },
+                {
+                    "id": "3",
+                    "eventtype": [
+                        "f"
+                    ],
+                    "publishing_brokers": [
+                        "0"
+                    ]
+                },
+                {
+                    "id": "4",
+                    "eventtype": [
                         "b"
                     ],
-                    "oublishing_brokers": [
+                    "publishing_brokers": [
                         "3"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "192.168.1.144",
+            "id_from_queryformat": 3,
+            "name": "pi5",
+            "port": 2252,
+            "pub": [
+                {
+                    "id": "1",
+                    "event_operator": "and",
+                    "eventtype": [
+                        "cebdf"
+                    ],
+                    "recieveing_brokers": []
+                }
+            ],
+            "sub": [
+                {
+                    "id": "1",
+                    "eventtype": [
+                        "b"
+                    ],
+                    "publishing_brokers": [
+                        "3"
+                    ]
+                },
+                {
+                    "id": "2",
+                    "eventtype": [
+                        "andcedf"
+                    ],
+                    "publishing_brokers": [
+                        "4", "2"
+                    ]
+                }
+            ]
+        },{
+            "id": "192.168.1.145",
+            "id_from_queryformat": 4,
+            "name": "pi5",
+            "port": 2289,
+            "pub": [
+                {
+                    "id": "1",
+                    "event_operator": "plain",
+                    "eventtype": [
+                        "j"
+                    ],
+                    "recieveing_brokers": ["4"]
+                },
+                {
+                    "id": "2",
+                    "event_operator": "plain",
+                    "eventtype": [
+                        "e"
+                    ],
+                    "recieveing_brokers": ["2", "4","9"]
+                },
+                {
+                    "id": "3",
+                    "event_operator": "seq",
+                    "eventtype": [
+                        "ja"
+                    ],
+                    "recieveing_brokers": ["9"]
+                },
+                {
+                    "id": "4",
+                    "event_operator": "and",
+                    "eventtype": [
+                        "c,e,d,f"
+                    ],
+                    "recieveing_brokers": [
+                        "1","2","3","4","5"
+                    ]
+                },
+                {
+                    "id": "5",
+                    "event_operator": "and",
+                    "eventtype": [
+                        "c,e,b,d,f"
+                    ],
+                    "recieveing_brokers": []
+                }
+            ],
+            "sub": [
+                {
+                    "id": "1",
+                    "eventtype": [
+                        "a"
+                    ],
+                    "publishing_brokers": [
+                        "0"
+                    ]
+                },
+                {
+                    "id": "2",
+                    "eventtype": [
+                        "c"
+                    ],
+                    "publishing_brokers": [
+                        "9"
+                    ]
+                },
+                {
+                    "id": "3",
+                    "eventtype": [
+                        "f"
+                    ],
+                    "publishing_brokers": [
+                        "0"
+                    ]
+                },
+                {
+                    "id": "4",
+                    "eventtype": [
+                        "b"
+                    ],
+                    "publishing_brokers": [
+                        "3"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "192.168.1.146",
+            "id_from_queryformat": 5,
+            "name": "pi6",
+            "port": 2215,
+            "pub": [
+                {
+                    "id": "1",
+                    "event_operator": "and",
+                    "eventtype": [
+                        "cebdf"
+                    ],
+                    "recieveing_brokers": []
+                },
+                {
+                    "id": "2",
+                    "event_operator": "and",
+                    "eventtype": [
+                        "e,seq(cja)"
+                    ],
+                    "recieveing_brokers": []
+                }
+            ],
+            "sub": [
+                {
+                    "id": "1",
+                    "eventtype": [
+                        "b"
+                    ],
+                    "publishing_brokers": [
+                        "3"
+                    ]
+                },
+                {
+                    "id": "2",
+                    "eventtype": [
+                        "and(cedf)"
+                    ],
+                    "publishing_brokers": [
+                        "4", "2"
+                    ]
+                },
+                {
+                    "id": "3",
+                    "eventtype": [
+                        "and(e,seq(ja))"
+                    ],
+                    "publishing_brokers": [
+                        "9"
+                    ]
+                },
+                {
+                    "id": "4",
+                    "eventtype": [
+                        "c"
+                    ],
+                    "publishing_brokers": [
+                        "9"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "192.168.1.147",
+            "id_from_queryformat": 6,
+            "name": "pi7",
+            "port": 2203,
+            "pub": [],
+            "sub": []
+        },
+        {
+            "id": "192.168.1.148",
+            "id_from_queryformat": 7,
+            "name": "pi8",
+            "port": 2288,
+            "pub": [],
+            "sub": []
+        },
+        {
+            "id": "192.168.1.149",
+            "id_from_queryformat": 9,
+            "name": "pi9",
+            "port": 2299,
+            "pub": [
+                {
+                    "id": "1",
+                    "event_operator": "plain",
+                    "eventtype": [
+                        "c"
+                    ],
+                    "recieveing_brokers": ["0","5","4","2"]
+                },
+                {
+                    "id": "2",
+                    "event_operator": "and",
+                    "eventtype": [
+                        "e,seq(ja)"
+                    ],
+                    "recieveing_brokers": ["5","9"]
+                },
+                {
+                    "id": "3",
+                    "event_operator": "and",
+                    "eventtype": [
+                        "e,seq(cja)"
+                    ],
+                    "recieveing_brokers": []
+                }
+            ],
+            "sub": [
+                {
+                    "id": "1",
+                    "eventtype": [
+                        "seq(ja)"
+                    ],
+                    "publishing_brokers": [
+                        "4"
+                    ]
+                },
+                {
+                    "id": "2",
+                    "eventtype": [
+                        "and(e,seq(ja))"
+                    ],
+                    "publishing_brokers": [
+                        "9"
                     ]
                 }
             ]
