@@ -8,9 +8,7 @@ def main():
     datastream = ["c,a,f,c,f,g,k,e,b,d"]
 
     # read json
-    with open(
-        str(pathlib.Path(__file__).parent.resolve()) + "/network-plan.json", "r"
-    ) as f:
+    with open(str(pathlib.Path(__file__).parent.resolve()) + "/network-plan.json", "r") as f:
         config = json.load(f)[own_ip]
 
     # read event operators and types
@@ -28,7 +26,7 @@ def main():
                     print("new broker found: ", j)
                     broker_list = broker_list + [j]
                 print(broker_list)
-                # pub event to broker_list
+        # pub event to broker_list
 
         if operator == "plain":
             broker_list = []
@@ -40,7 +38,7 @@ def main():
                     print("new broker found: ", j)
                     broker_list = broker_list + [j]
                 print(broker_list)
-                # pub event to broker_list
+        # pub event to broker_list
 
         if operator == "and":
             broker_list = []
@@ -60,4 +58,4 @@ def main():
                     broker_list = broker_list + [j]
                 print(broker_list)
 
-                # then pub event to broker_list
+        # then pub event to broker_list
