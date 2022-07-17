@@ -84,7 +84,13 @@ def pub_events():
     evt = random.choice(event_types)
     pi_id, event, time_lst, value_lst, now = generate_list(evt)
     time_lst_str = [date_obj.strftime("%m/%d/%Y, %H:%M:%S") for date_obj in time_lst]
-    body_content = json.dumps([pi_id, event, time_lst_str, value_lst, now])
+    body_content = json.dumps({
+        'pi_id': pi_id,
+        'eventtype': event,
+        'timestamps': time_lst_str,
+        'values': value_lst,
+        'timestamp': now
+    })
     broker_con.publish_to_topic(topic=evt, message=body_content, id=pi_id)
 
 

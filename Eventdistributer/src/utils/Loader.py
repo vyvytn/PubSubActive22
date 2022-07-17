@@ -9,7 +9,7 @@ class Loader:
             self.data = json.load(f)
         self.own_ip = ip_adress
 
-    def get_sub_by_ip(self):
+    def get_sub(self):
         pis = self.data['pis']
         pi_data = {}
         for item in pis:
@@ -18,7 +18,7 @@ class Loader:
                 return pub_config
         return pi_data
 
-    def get_pub_by_ip(self):
+    def get_pub(self):
         pis = self.data['pis']
         pi_data = {}
         for item in pis:

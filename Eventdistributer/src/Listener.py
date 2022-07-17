@@ -16,8 +16,6 @@ class Listener(stomp.PrintingListener):
         Called by the STOMP connection once a TCP/IP connection to the
         STOMP server has been established or re-established.
     """
-    msg_list = []
-
     def __init__(self):
         super().__init__()
         self.msg_list = []
@@ -53,10 +51,10 @@ class Listener(stomp.PrintingListener):
     """Called by the STOMP connection before a message is returned to the client app. Returns a tuple
         containing the headers and body (so that implementing listeners can pre-process the content).
         :param dict headers: the message headers
-        :param body: the message body"""
+        :param body: the message body
 
     def on_before_message(self, frame):
-        return super().on_before_message(frame)
+        return super().on_before_message(frame)"""
 
     """ Called by the STOMP connection when a MESSAGE frame is received.
         :param dict headers: a dictionary containing all headers sent by the server as key/value pairs.
@@ -64,7 +62,7 @@ class Listener(stomp.PrintingListener):
         """
 
     def on_message(self, frame):
-        self.msg_list.append(frame)
+        self.msg_list.append(frame.body)
         return super().on_message(frame)
 
     """ Called by the STOMP connection when a RECEIPT frame is

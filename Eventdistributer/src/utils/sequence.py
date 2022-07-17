@@ -1,6 +1,3 @@
-from msilib import sequence
-
-
 datastream = ["c", "a", "f", "c", "f", "g", "k", "e", "f", "a", "c", "b", "d"]
 event_operator = "seq"
 event_type = ["a", "f", "c"]
