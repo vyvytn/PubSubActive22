@@ -2,171 +2,133 @@
     "pis": [
         {
             "id": "192.168.1.142",
-            "id_from_queryformat": 0,
-            "name": "pi",
+            "node_id": "0",
+            "pi_id": "pi",
             "port": 2235,
             "pub": [
                 {
                     "event_operator": "seq",
-                    "eventtype": "A,F,C"
-                },
-                {
-                    "event_operator": "plain",
-                    "eventtype": "A"
-                },
-                {
-                    "event_operator": "plain",
-                    "eventtype": "F"
+                    "event_type": "A,F,C"
                 },
                 {
                     "event_operator": "and",
-                    "eventtype": "C,E,B,D,F"
+                    "event_type": "C,E,B,D,F"
                 }
             ],
-            "sub": [
-
-            ]
+            "sub": ["A", "F", "C"]
         },
         {
             "id": "192.168.2.228",
-            "id_from_queryformat": 1,
-            "name": "pi2",
+            "node_id": "1",
+            "pi_id": "pi2",
             "port": 2235,
             "pub": [
                 {
                     "event_operator": "and",
-                    "eventtype":"C,E,B,D,F"
-
+                    "event_type":"C,E,B,D,F"
                 }
             ],
-            "sub": [
-
-            ]
+            "sub": ["B", "AND(C, E, D, F)"]
         },{
             "id": "192.168.1.143",
-            "id_from_queryformat": 2,
-            "name": "pi3",
+            "node_id": "2",
+            "pi_id": "pi3",
             "port": 2277,
             "pub": [
                 {
-                    "event_operator": "plain",
-                    "eventtype": "d"
+                    "event_operator": "and",
+                    "event_type": "C,E,D,F"
                 },
                 {
                     "event_operator": "and",
-                    "eventtype": "c,e,d,f"
-                },
-                {
-                    "event_operator": "and",
-                    "eventtype":"c,e,b,d,f"
+                    "event_type":"C,E,B,D,E,F"
                 }
             ],
-            "sub": []
+            "sub": ["B", "AND(CEDF)", "C", "E", "D", "F"]
         },
         {
             "id": "192.168.1.144",
-            "id_from_queryformat": 3,
-            "name": "pi5",
+            "node_id": "3",
+            "pi_id": "pi4",
             "port": 2252,
             "pub": [
                 {
                     "event_operator": "and",
-                    "eventtype": "cebdf"
+                    "event_type": "C,E,B,D,E,F"
                 }
             ],
-            "sub": [
-
-            ]
+            "sub": ["B", "AND(CEDF)"]
         },{
             "id": "192.168.1.145",
-            "id_from_queryformat": 4,
-            "name": "pi5",
+            "node_id": "4",
+            "pi_id": "pi5",
             "port": 2289,
             "pub": [
                 {
-                    "event_operator": "plain",
-                    "eventtype": "j"
-                },
-                {
-                    "event_operator": "plain",
-                    "eventtype": "e"
-                },
-                {
                     "event_operator": "seq",
-                    "eventtype":"j,a"
+                    "event_type":"J,A"
                 },
                 {
                     "event_operator": "and",
-                    "eventtype":"c,e,d,f"
+                    "event_type":"C,E,D,F"
                 },
                 {
                     "event_operator": "and",
-                    "eventtype": "c,e,b,d,f"
+                    "event_type": "C,E,B,D,F"
                 }
             ],
-            "sub": [
-
-            ]
+            "sub": ["B", "AND(CEDF)", "C", "E", "D", "F", "J", "A"]
         },
         {
             "id": "192.168.1.146",
-            "id_from_queryformat": 5,
-            "name": "pi6",
+            "node_id": "5",
+            "pi_id": "pi6",
             "port": 2215,
             "pub": [
                 {
                     "event_operator": "and",
-                    "eventtype":
-                        "cebdf"
+                    "event_type":"C,E,B,D,F"
                 },
                 {
                     "event_operator": "and",
-                    "eventtype": "e,seq(cja)"
+                    "event_type": "E,SEQ(CJA)"
                 }
             ],
-            "sub": [
-
-            ]
+            "sub": ["B", "AND(CEDF)",  "AND(ESEQ(JA))", "C"]
         },
         {
             "id": "192.168.1.147",
-            "id_from_queryformat": 6,
-            "name": "pi7",
+            "node_id": "6",
+            "pi_id": "pi7",
             "port": 2203,
             "pub": [],
             "sub": []
         },
         {
             "id": "192.168.1.148",
-            "id_from_queryformat": 7,
-            "name": "pi8",
+            "node_id": "7",
+            "pi_id": "pi8",
             "port": 2288,
             "pub": [],
             "sub": []
         },
         {
             "id": "192.168.1.149",
-            "id_from_queryformat": 9,
-            "name": "pi9",
+            "node_id": "9",
+            "pi_id": "pi9",
             "port": 2299,
             "pub": [
                 {
-                    "event_operator": "plain",
-                    "eventtype":  "c"
-                },
-                {
                     "event_operator": "and",
-                    "eventtype": "e,seq(ja)"
+                    "event_type": "E,SEQ(JA)"
 
                 },
                 {
                     "event_operator": "and",
-                    "eventtype": "e,seq(cja)"
+                    "event_type": "E,SEQ(CJA)"
                 }
             ],
-            "sub": [
-
-            ]
+            "sub": ["AND(ESEQ(JA))", "C",  "E", "SEQ(JA)"]
         }
     ]
 }
