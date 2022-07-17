@@ -1,26 +1,23 @@
 from Connector import Connection
 from Listener import Listener
 import json
+import socket
+from utils.Loader import Loader
+
+pi_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+pi_socket.connect(("8.8.8.8", 80))  # ist das hier relevant?
+pi_ip = pi_socket.getsockname()[0]
 
 # read json
-with open("../network-plan.json", "r") as f:
-    file_plan = json.load(f)
+reader = Loader(socket.AF_INET, socket.SOCK_DGRAM)
 
-pis = []
-for i in file_plan:
-    pis.append(i)
-
-for data in file_plan['pi_list']:
-    print(data)
-
-
+my_data = reader.get_my_config()
+print(my_data)
 broker_con = Connection('admin', 'admin', [('127.0.0.1', 61613)], True)
 
 broker_con.register_listener(Listener, 'listenerToTopic')
 
 broker_con.connect()
 
-broker_con.subscribe_to_topic('myTestTopic')
-
-for i in range(0, 10000, 1):
-    broker_con.publish_to_topic('myTestTopic', ' testing')
+for sub in my_data['sub']:
+    broker_con.subscribe_to_topic(sub, my_data['node'])

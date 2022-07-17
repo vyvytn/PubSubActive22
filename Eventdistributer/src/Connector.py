@@ -33,11 +33,11 @@ class Connection(stomp.Connection):
         # self.stomp_con.start()
         self.stomp_con.connect(self.username, self.password, self.wait)
 
-    def subscribe_to_topic(self, topic):
-        self.stomp_con.subscribe(destination=topic, id='1', ack='auto')
+    def subscribe_to_topic(self, topic, id):
+        self.stomp_con.subscribe(destination='/topic/'+topic, id=id, ack='auto')
 
     def publish_to_topic(self, topic, message):
-        self.stomp_con.send(destination=topic, body=message)
+        self.stomp_con.send(destination='/topic/'+topic, body=message)
 
     def disconnect(self):
         self.stomp_con.disconnect()

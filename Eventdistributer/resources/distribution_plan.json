@@ -28,7 +28,7 @@
                     "event_type":"C,E,B,D,F"
                 }
             ],
-            "sub": ["B", "AND(C, E, D, F)"]
+            "sub": ["B", "AND(CEDF)"]
         },{
             "ip": "192.168.1.143",
             "node_id": "2",
