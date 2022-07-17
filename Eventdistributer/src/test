@@ -1,3 +1,0 @@
-FRAMEBODY {cmd=MESSAGE
-,headers=[{'content-length': '66', 'expires': '0', 'destination': '/topic/B', 'subscription': '1', 'priority': '4', 'message-id': 'ID:DESKTOP-E7G1PH0-53957-1657965431713-3:711:-1:1:1', 'timestamp': '1658063832282'}]
-,body=["", "B", ["11/06/2022, 13:39:50"], ["B"], "07/17/2022, 15:17:12"]}
