@@ -1,5 +1,8 @@
+import time
+
 import stomp
 import logging
+
 log = logging.getLogger('Connector.py')
 
 
@@ -26,17 +29,17 @@ class Connection(stomp.Connection):
         self.stomp_con = stomp.Connection(self.host_port)
 
     def register_listener(self, listener_obj, listener_id):
-        self.stomp_con.set_listener(listener_id, listener_obj())
+        self.stomp_con.set_listener(listener_id, listener_obj)
 
     def connect(self):
         # self.stomp_con.start()
         self.stomp_con.connect(self.username, self.password, self.wait)
 
     def subscribe_to_topic(self, topic, id):
-        self.stomp_con.subscribe(destination='/topic/'+topic, id=id, ack='auto')
+        self.stomp_con.subscribe(destination='/topic/' + topic, id=id, ack='auto')
 
-    def publish_to_topic(self, topic, message):
-        self.stomp_con.send(destination='/topic/'+topic, body=message)
+    def publish_to_topic(self, topic, message, id):
+        self.stomp_con.send(destination='/topic/' + topic, body=message)
 
     def disconnect(self):
         self.stomp_con.disconnect()

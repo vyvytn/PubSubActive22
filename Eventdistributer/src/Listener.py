@@ -11,11 +11,16 @@ log = logging.getLogger('listener.py')
 """
 
 
-class Listener(stomp.ConnectionListener):
+class Listener(stomp.PrintingListener):
     """
         Called by the STOMP connection once a TCP/IP connection to the
         STOMP server has been established or re-established.
     """
+    msg_list = []
+
+    def __init__(self):
+        super().__init__()
+        self.msg_list = []
 
     def on_connecting(self, host_and_port):
         now = int(time.time())
@@ -59,6 +64,7 @@ class Listener(stomp.ConnectionListener):
         """
 
     def on_message(self, frame):
+        self.msg_list.append(frame)
         return super().on_message(frame)
 
     """ Called by the STOMP connection when a RECEIPT frame is

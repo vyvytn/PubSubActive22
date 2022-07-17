@@ -78,13 +78,14 @@ def generate_list(event):
 def pub_events():
     broker_con = Connection('admin', 'admin', [(local, 61613)], True)
     broker_con.connect()
-    event_types = ['A', 'B', 'C', 'D', 'E', 'F', 'SEQ(AFC)', 'SEQ(JA)', 'AND(CEDF)', 'AND(CEBDF)', 'AND(ESEQ(CJA)',
-                   'AND(ESEQ(JA)']
+    """event_types = ['A', 'B', 'C', 'D', 'E', 'F', 'SEQ(AFC)', 'SEQ(JA)', 'AND(CEDF)', 'AND(CEBDF)', 'AND(ESEQ(CJA)',
+                   'AND(ESEQ(JA)']"""
+    event_types = ['B', 'AND(CEDF)']
     evt = random.choice(event_types)
     pi_id, event, time_lst, value_lst, now = generate_list(evt)
     time_lst_str = [date_obj.strftime("%m/%d/%Y, %H:%M:%S") for date_obj in time_lst]
     body_content = json.dumps([pi_id, event, time_lst_str, value_lst, now])
-    broker_con.publish_to_topic(topic=evt, message=body_content)
+    broker_con.publish_to_topic(topic=evt, message=body_content, id=pi_id)
 
 
 for i in range(10000):

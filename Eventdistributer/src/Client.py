@@ -1,3 +1,4 @@
+import time
 from datetime import datetime
 import socket
 from utils.Loader import Loader
@@ -33,16 +34,22 @@ class Client:
         self.reader = Loader(self.pi_ip)
         self.my_data = self.reader.get_my_config()
         self.broker_con = Connection('admin', 'admin', [(host_ip, 61613)], True)
+        self.my_Listener = Listener()
+        self.broker_con.register_listener(self.my_Listener, '1')
 
     def connect_to_broker(self):
-        self.broker_con.register_listener(Listener, 'listenerToTopic')
         self.broker_con.connect()
 
     def sub_to_topics(self):
+        messages=[]
         for sub in self.my_data['sub']:
             self.broker_con.subscribe_to_topic(sub, self.my_data['node'])
+            time.sleep(20)
+            print('iteration')
+            messages = self.my_Listener.msg_list
+        print('MESSAGE',messages)
 
     def pub_to_topics(self):
-        print(self.my_data['pub'])
+        print('my Data',self.my_data['pub'])
         for topic in self.my_data['pub']:
             pass
