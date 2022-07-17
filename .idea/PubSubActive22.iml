@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Eventdistributer/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Eventdistributer/resources" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.9 (EP)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.10 (EP2)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">

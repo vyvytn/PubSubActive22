@@ -7,81 +7,24 @@
             "port": 2235,
             "pub": [
                 {
-                    "id": "1",
                     "event_operator": "seq",
-                    "eventtype": [
-                        "a,f,c"
-                    ],
-                    "recieveing_brokers": []
+                    "eventtype": "A,F,C"
                 },
                 {
                     "event_operator": "plain",
-                    "eventtype": [
-                        "a"
-                    ],
-                    "recieveing_brokers": [
-                        "4",
-                        "2"
-                    ]
+                    "eventtype": "A"
                 },
                 {
                     "event_operator": "plain",
-                    "eventtype": [
-                        "f"
-                    ],
-                    "recieveing_brokers": [
-                        "4",
-                        "2"
-                    ]
+                    "eventtype": "F"
                 },
                 {
                     "event_operator": "and",
-                    "eventtype": [
-                        "c,e,b,d,f"
-                    ],
-                    "recieveing_brokers": [
-                        "4",
-                        "2"
-                    ]
+                    "eventtype": "C,E,B,D,F"
                 }
             ],
             "sub": [
-                {
-                    "id": "1",
-                    "eventtype": [
-                        "c"
-                    ],
-                    "publishing_brokers": [
-                        "9"
-                    ]
-                },
-                {
-                    "id": "2",
-                    "eventtype": [
-                        "b"
-                    ],
-                    "publishing_brokers": [
-                        "3"
-                    ]
-                },
-                {
-                    "id": "3",
-                    "eventtype": [
-                        "and(cedf)"
-                    ],
-                    "publishing_brokers": [
-                        "2"
-                    ]
-                },
-                {
-                    "id": "4",
-                    "eventtype": [
-                        "and(cedf)"
-                    ],
-                    "publishing_brokers": [
-                        "4"
-                    ]
-                }
+
             ]
         },
         {
@@ -91,33 +34,13 @@
             "port": 2235,
             "pub": [
                 {
-                    "id": "1",
                     "event_operator": "and",
-                    "eventtype": [
-                        "cebdf"
-                    ],
-                    "recieveing_brokers": []
+                    "eventtype":"C,E,B,D,F"
+
                 }
             ],
             "sub": [
-                {
-                    "id": "1",
-                    "eventtype": [
-                        "b"
-                    ],
-                    "publishing_brokers": [
-                        "3"
-                    ]
-                },
-                {
-                    "id": "2",
-                    "eventtype": [
-                        "andcedf"
-                    ],
-                    "publishing_brokers": [
-                        "4", "2"
-                    ]
-                }
+
             ]
         },{
             "id": "192.168.1.143",
@@ -126,70 +49,19 @@
             "port": 2277,
             "pub": [
                 {
-                    "id": "1",
                     "event_operator": "plain",
-                    "eventtype": [
-                        "d"
-                    ],
-                    "recieveing_brokers": ["2", "4"]
+                    "eventtype": "d"
                 },
                 {
-                    "id": "2",
                     "event_operator": "and",
-                    "eventtype": [
-                        "c,e,d,f"
-                    ],
-                    "recieveing_brokers": [
-                        "1","2","3","4","5"
-                    ]
+                    "eventtype": "c,e,d,f"
                 },
                 {
-                    "id": "3",
                     "event_operator": "and",
-                    "eventtype": [
-                        "c,e,b,d,f"
-                    ],
-                    "recieveing_brokers": []
+                    "eventtype":"c,e,b,d,f"
                 }
             ],
-            "sub": [
-                {
-                    "id": "1",
-                    "eventtype": [
-                        "e"
-                    ],
-                    "publishing_brokers": [
-                        "4"
-                    ]
-                },
-                {
-                    "id": "2",
-                    "eventtype": [
-                        "c"
-                    ],
-                    "publishing_brokers": [
-                        "9"
-                    ]
-                },
-                {
-                    "id": "3",
-                    "eventtype": [
-                        "f"
-                    ],
-                    "publishing_brokers": [
-                        "0"
-                    ]
-                },
-                {
-                    "id": "4",
-                    "eventtype": [
-                        "b"
-                    ],
-                    "publishing_brokers": [
-                        "3"
-                    ]
-                }
-            ]
+            "sub": []
         },
         {
             "id": "192.168.1.144",
@@ -198,33 +70,12 @@
             "port": 2252,
             "pub": [
                 {
-                    "id": "1",
                     "event_operator": "and",
-                    "eventtype": [
-                        "cebdf"
-                    ],
-                    "recieveing_brokers": []
+                    "eventtype": "cebdf"
                 }
             ],
             "sub": [
-                {
-                    "id": "1",
-                    "eventtype": [
-                        "b"
-                    ],
-                    "publishing_brokers": [
-                        "3"
-                    ]
-                },
-                {
-                    "id": "2",
-                    "eventtype": [
-                        "andcedf"
-                    ],
-                    "publishing_brokers": [
-                        "4", "2"
-                    ]
-                }
+
             ]
         },{
             "id": "192.168.1.145",
@@ -233,85 +84,28 @@
             "port": 2289,
             "pub": [
                 {
-                    "id": "1",
                     "event_operator": "plain",
-                    "eventtype": [
-                        "j"
-                    ],
-                    "recieveing_brokers": ["4"]
+                    "eventtype": "j"
                 },
                 {
-                    "id": "2",
                     "event_operator": "plain",
-                    "eventtype": [
-                        "e"
-                    ],
-                    "recieveing_brokers": ["2", "4","9"]
+                    "eventtype": "e"
                 },
                 {
-                    "id": "3",
                     "event_operator": "seq",
-                    "eventtype": [
-                        "ja"
-                    ],
-                    "recieveing_brokers": ["9"]
+                    "eventtype":"j,a"
                 },
                 {
-                    "id": "4",
                     "event_operator": "and",
-                    "eventtype": [
-                        "c,e,d,f"
-                    ],
-                    "recieveing_brokers": [
-                        "1","2","3","4","5"
-                    ]
+                    "eventtype":"c,e,d,f"
                 },
                 {
-                    "id": "5",
                     "event_operator": "and",
-                    "eventtype": [
-                        "c,e,b,d,f"
-                    ],
-                    "recieveing_brokers": []
+                    "eventtype": "c,e,b,d,f"
                 }
             ],
             "sub": [
-                {
-                    "id": "1",
-                    "eventtype": [
-                        "a"
-                    ],
-                    "publishing_brokers": [
-                        "0"
-                    ]
-                },
-                {
-                    "id": "2",
-                    "eventtype": [
-                        "c"
-                    ],
-                    "publishing_brokers": [
-                        "9"
-                    ]
-                },
-                {
-                    "id": "3",
-                    "eventtype": [
-                        "f"
-                    ],
-                    "publishing_brokers": [
-                        "0"
-                    ]
-                },
-                {
-                    "id": "4",
-                    "eventtype": [
-                        "b"
-                    ],
-                    "publishing_brokers": [
-                        "3"
-                    ]
-                }
+
             ]
         },
         {
@@ -321,59 +115,17 @@
             "port": 2215,
             "pub": [
                 {
-                    "id": "1",
                     "event_operator": "and",
-                    "eventtype": [
+                    "eventtype":
                         "cebdf"
-                    ],
-                    "recieveing_brokers": []
                 },
                 {
-                    "id": "2",
                     "event_operator": "and",
-                    "eventtype": [
-                        "e,seq(cja)"
-                    ],
-                    "recieveing_brokers": []
+                    "eventtype": "e,seq(cja)"
                 }
             ],
             "sub": [
-                {
-                    "id": "1",
-                    "eventtype": [
-                        "b"
-                    ],
-                    "publishing_brokers": [
-                        "3"
-                    ]
-                },
-                {
-                    "id": "2",
-                    "eventtype": [
-                        "and(cedf)"
-                    ],
-                    "publishing_brokers": [
-                        "4", "2"
-                    ]
-                },
-                {
-                    "id": "3",
-                    "eventtype": [
-                        "and(e,seq(ja))"
-                    ],
-                    "publishing_brokers": [
-                        "9"
-                    ]
-                },
-                {
-                    "id": "4",
-                    "eventtype": [
-                        "c"
-                    ],
-                    "publishing_brokers": [
-                        "9"
-                    ]
-                }
+
             ]
         },
         {
@@ -399,49 +151,21 @@
             "port": 2299,
             "pub": [
                 {
-                    "id": "1",
                     "event_operator": "plain",
-                    "eventtype": [
-                        "c"
-                    ],
-                    "recieveing_brokers": ["0","5","4","2"]
+                    "eventtype":  "c"
                 },
                 {
-                    "id": "2",
                     "event_operator": "and",
-                    "eventtype": [
-                        "e,seq(ja)"
-                    ],
-                    "recieveing_brokers": ["5","9"]
+                    "eventtype": "e,seq(ja)"
+
                 },
                 {
-                    "id": "3",
                     "event_operator": "and",
-                    "eventtype": [
-                        "e,seq(cja)"
-                    ],
-                    "recieveing_brokers": []
+                    "eventtype": "e,seq(cja)"
                 }
             ],
             "sub": [
-                {
-                    "id": "1",
-                    "eventtype": [
-                        "seq(ja)"
-                    ],
-                    "publishing_brokers": [
-                        "4"
-                    ]
-                },
-                {
-                    "id": "2",
-                    "eventtype": [
-                        "and(e,seq(ja))"
-                    ],
-                    "publishing_brokers": [
-                        "9"
-                    ]
-                }
+
             ]
         }
     ]
