@@ -1,6 +1,5 @@
 import stomp
 import logging
-import Listener
 log = logging.getLogger('Connector.py')
 
 

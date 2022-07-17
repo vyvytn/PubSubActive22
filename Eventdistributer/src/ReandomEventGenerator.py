@@ -1,10 +1,10 @@
 import time
-
 from Connector import Connection
 import json
 import random
 from datetime import datetime, timedelta
-import threading
+
+local = '127.0.0.1'
 
 
 def gen_datetime(min_year=2022, max_year=datetime.now().year):
@@ -76,21 +76,14 @@ def generate_list(event):
 
 
 def pub_events():
-    broker_con = Connection('admin', 'admin', [('127.0.0.1', 61613)], True)
-
-    # broker_con.register_listener(Listener, 'listenerToTopic')
-
+    broker_con = Connection('admin', 'admin', [(local, 61613)], True)
     broker_con.connect()
-
-    # broker_con.subscribe_to_topic('myTestTopic')
-
     event_types = ['A', 'B', 'C', 'D', 'E', 'F', 'SEQ(AFC)', 'SEQ(JA)', 'AND(CEDF)', 'AND(CEBDF)', 'AND(ESEQ(CJA)',
                    'AND(ESEQ(JA)']
     evt = random.choice(event_types)
     pi_id, event, time_lst, value_lst, now = generate_list(evt)
     time_lst_str = [date_obj.strftime("%m/%d/%Y, %H:%M:%S") for date_obj in time_lst]
     body_content = json.dumps([pi_id, event, time_lst_str, value_lst, now])
-    print(body_content)
     broker_con.publish_to_topic(topic=evt, message=body_content)
 
 
