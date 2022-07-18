@@ -1,0 +1,188 @@
+{
+  "events": [
+    {
+      "event_type": "A",
+      "event_operator": "plain",
+      "event_values": []
+    },
+    {
+      "event_type": "B",
+      "event_operator": "plain",
+      "event_values": []
+    },
+    {
+      "event_type": "C",
+      "event_operator": "plain",
+      "event_values": []
+    },
+    {
+      "event_type": "D",
+      "event_operator": "plain",
+      "event_values": []
+    },
+    {
+      "event_type": "E",
+      "event_operator": "plain",
+      "event_values": []
+    },
+    {
+      "event_type": "F",
+      "event_operator": "plain",
+      "event_values": []
+    },
+    {
+      "event_type": "SEQ(J.A)",
+      "event_operator": "seq",
+      "event_values": [
+        {
+          "event_type": "J",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "A",
+          "event_operator": "plain",
+          "event_values": []
+        }
+      ]
+    },
+    {
+      "event_type": "SEQ(A.F.C)",
+      "event_operator": "seq",
+      "event_values": [
+        {
+          "event_type": "A",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "F",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "C",
+          "event_operator": "plain",
+          "event_values": []
+        }
+      ]
+    },
+    {
+      "event_type": "AND(C.E.D.F)",
+      "event_operator": "and",
+      "event_values": [
+        {
+          "event_type": "C",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "E",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "D",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "F",
+          "event_operator": "plain",
+          "event_values": []
+        }
+      ]
+    },
+    {
+      "event_type": "AND(C.E.B.D.F)",
+      "event_operator": "and",
+      "event_values": [
+        {
+          "event_type": "C",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "E",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "B",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "D",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "F",
+          "event_operator": "plain",
+          "event_values": []
+        }
+      ]
+    },
+    {
+      "event_type": "AND(E.SEQ(J.A))",
+      "event_operator": "and",
+      "event_values": [
+        {
+          "event_type": "E",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "SEQ(J.A)",
+          "event_operator": "seq",
+          "event_values": [
+            {
+              "event_type": "J",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "A",
+              "event_operator": "plain",
+              "event_values": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_type": "AND(E.SEQ(C.J.A))",
+      "event_operator": "and",
+      "event_values": [
+        {
+          "event_type": "E",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "SEQ(C.J.A)",
+          "event_operator": "seq",
+          "event_values": [
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "J",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "A",
+              "event_operator": "plain",
+              "event_values": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

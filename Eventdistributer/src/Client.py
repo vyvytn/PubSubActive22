@@ -21,13 +21,13 @@ def create_body(content):
 
 
 def and_operator(self, sub, query, messages):
-    # messages ['{"pi_id": "4", "eventtype": "AND(CEDF)", "timestamps": ["11/23/2022, 06:51:47", "07/12/2022, 15:41:12", "11/17/2022, 22:04:30", "09/13/2022, 10:31:09"], "values": ["C", "E", "D", "F"], "timestamp": "07/17/2022, 15:49:36"}', '{"pi_id": "2", "eventtype": "AND(CEDF)", "timestamps": ["09/20/2022, 13:12:19", "02/09/2022, 01:31:51", "06/10/2022, 09:52:30", "08/28/2022, 23:49:33"], "values": ["C", "E", "D", "F"], "timestamp": "07/17/2022, 15:49:39"}', '{"pi_id": "4", "eventtype": "AND(CEDF)", "timestamps": ["03/06/2022, 10:17:32", "12/12/2022, 12:15:31", "07/16/2022, 18:05:17", "08/06/2022, 03:22:17"], "values": ["C", "E", "D", "F"], "timestamp": "07/17/2022, 15:49:42"}', '{"pi_id": "2", "eventtype": "AND(CEDF)", "timestamps": ["09/01/2022, 07:43:28", "06/08/2022, 04:57:19", "10/01/2022, 15:45:27", "10/06/2022, 18:01:24"], "values": ["C", "E", "D", "F"], "timestamp": "07/17/2022, 15:49:45"}']
     messages_parsed = []
     for m in messages:
         messages_parsed.append(json.loads(m))
-    # incoming_events = [m['eventtype'] for m in messages_parsed]
     incoming_events = [m for m in messages_parsed]
     print(incoming_events)
+    #print([e["event_type"] for e in sub])
+    #print([e["event_type"] for e in query])
     """if set(sub).issubset(incoming_events):
         #some action
         #self.finished = True
@@ -67,19 +67,19 @@ class Client:
         self.broker_con.connect()
 
     def sub_to_topics(self):
-        subscriptions = self.reader.get_sub()
+        subscriptions = []
+        for e in self.reader.get_sub():
+            subscriptions.append(e['event_type'])
         for sub in subscriptions:
             self.broker_con.subscribe_to_topic(sub, self.my_data['node'])
 
     def pub_to_topics(self):
-        to_published = self.reader.get_pub()
-        for topic in to_published:
-            print(topic)
+        self.finished = False
+        for e in self.reader.get_pub():
             while not self.finished:
-                # topic {'event_operator': 'and', 'event_type': 'C,E,B,D,F'}
-                if topic['event_operator'] == 'and':
+                if e['event_operator'] == 'and':
                     self.messages = self.my_Listener.msg_list
-                    and_operator(self, self.reader.get_sub(), topic, self.messages)
-                elif topic['event_operator'] == 'seq':
+                    and_operator(self, self.reader.get_sub(), [e], self.messages)
+                elif e['event_operator'] == 'seq':
                     self.messages = self.my_Listener.msg_list
-                    seq_operator(self, self.reader.get_sub(), topic, self.messages)
+                    seq_operator(self, self.reader.get_sub(), [e], self.messages)

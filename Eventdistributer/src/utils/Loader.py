@@ -11,21 +11,17 @@ class Loader:
 
     def get_sub(self):
         pis = self.data['pis']
-        pi_data = {}
         for item in pis:
             if self.own_ip == item['ip']:
                 pub_config = item['sub']
                 return pub_config
-        return pi_data
 
     def get_pub(self):
         pis = self.data['pis']
-        pi_data = {}
         for item in pis:
             if self.own_ip == item['ip']:
                 pub_config = item['pub']
                 return pub_config
-        return pi_data
 
     def get_my_config(self):
         pis = self.data['pis']
