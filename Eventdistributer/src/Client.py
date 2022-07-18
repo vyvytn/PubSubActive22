@@ -6,6 +6,8 @@ from utils.Loader import Loader
 from Connector import Connection
 from Listener import Listener
 
+test = True
+
 
 def create_body(content):
     message = {
@@ -23,12 +25,14 @@ def and_operator(self, sub, query, messages):
     messages_parsed = []
     for m in messages:
         messages_parsed.append(json.loads(m))
-    incoming_events=[m['eventtype'] for m in messages_parsed]
-    if set(sub).issubset(incoming_events):
+    # incoming_events = [m['eventtype'] for m in messages_parsed]
+    incoming_events = [m for m in messages_parsed]
+    print(incoming_events)
+    """if set(sub).issubset(incoming_events):
         #some action
-        self.finished = True
+        #self.finished = True
     else:
-        return
+        return"""
 
 
 def seq_operator(self, sub, query, messages):
@@ -50,7 +54,7 @@ class Client:
     def __init__(self, host_ip):
         pi_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         pi_socket.connect(("8.8.8.8", 80))  # ist das hier relevant?
-        self.pi_ip = pi_socket.getsockname()[0]
+        self.pi_ip = "192.168.1.146" if test else pi_socket.getsockname()[0]
         self.reader = Loader(self.pi_ip)
         self.my_data = self.reader.get_my_config()
         self.broker_con = Connection('admin', 'admin', [(host_ip, 61613)], True)
@@ -70,12 +74,12 @@ class Client:
     def pub_to_topics(self):
         to_published = self.reader.get_pub()
         for topic in to_published:
+            print(topic)
             while not self.finished:
                 # topic {'event_operator': 'and', 'event_type': 'C,E,B,D,F'}
                 if topic['event_operator'] == 'and':
                     self.messages = self.my_Listener.msg_list
-                    and_operator(self,self.reader.get_sub(), topic, self.messages)
+                    and_operator(self, self.reader.get_sub(), topic, self.messages)
                 elif topic['event_operator'] == 'seq':
-                    print('SEQ')
                     self.messages = self.my_Listener.msg_list
-                    seq_operator(self,self.reader.get_sub(), topic, self.messages)
+                    seq_operator(self, self.reader.get_sub(), topic, self.messages)

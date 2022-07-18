@@ -7,28 +7,74 @@
       "port": 2235,
       "pub": [
         {
+          "event_type": "SEQ(A.F.C)",
           "event_operator": "seq",
-          "event_type": [
-            "A",
-            "F",
-            "C"
+          "event_values": [
+            {
+              "event_type": "A",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "F",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            }
           ]
         },
         {
+          "event_type": "AND(C.E.B.D.F)",
           "event_operator": "and",
-          "event_type": [
-            "C",
-            "E",
-            "B",
-            "D",
-            "F"
+          "event_values": [
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "B",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "D",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "F",
+              "event_operator": "plain",
+              "event_values": []
+            }
           ]
         }
       ],
       "sub": [
-        "A",
-        "F",
-        "C"
+        {
+          "event_type": "A",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "F",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "C",
+          "event_operator": "plain",
+          "event_values": []
+        }
       ]
     },
     {
@@ -38,19 +84,69 @@
       "port": 2235,
       "pub": [
         {
+          "event_type": "AND(C.E.B.D.F)",
           "event_operator": "and",
-          "event_type": [
-            "C",
-            "E",
-            "B",
-            "D",
-            "F"
+          "event_values": [
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "B",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "D",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "F",
+              "event_operator": "plain",
+              "event_values": []
+            }
           ]
         }
       ],
       "sub": [
-        "B",
-        "AND(C.E.D.F)"
+        {
+          "event_type": "B",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "AND(C.E.D.F)",
+          "event_operator": "and",
+          "event_values": [
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "D",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "F",
+              "event_operator": "plain",
+              "event_values": []
+            }
+          ]
+        }
       ]
     },
     {
@@ -60,33 +156,115 @@
       "port": 2277,
       "pub": [
         {
+          "event_type": "AND(C.E.D.F)",
           "event_operator": "and",
-          "event_type": [
-            "C",
-            "E",
-            "D",
-            "F"
+          "event_values": [
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "D",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "F",
+              "event_operator": "plain",
+              "event_values": []
+            }
           ]
         },
         {
+          "event_type": "AND(C.E.B.D.F)",
           "event_operator": "and",
-          "event_type": [
-            "C",
-            "E",
-            "B",
-            "D",
-            "E",
-            "F"
+          "event_values": [
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "B",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "D",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "F",
+              "event_operator": "plain",
+              "event_values": []
+            }
           ]
         }
       ],
       "sub": [
-        "B",
-        "AND(C.E.D.F)",
-        "C",
-        "E",
-        "D",
-        "F"
+        {
+          "event_type": "B",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "AND(C.E.D.F)",
+          "event_operator": "and",
+          "event_values": [
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "D",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "F",
+              "event_operator": "plain",
+              "event_values": []
+            }
+          ]
+        },
+        {
+          "event_type": "C",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "E",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "D",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "F",
+          "event_operator": "plain",
+          "event_values": []
+        }
       ]
     },
     {
@@ -96,20 +274,69 @@
       "port": 2252,
       "pub": [
         {
+          "event_type": "AND(C.E.B.D.F)",
           "event_operator": "and",
-          "event_type": [
-            "C",
-            "E",
-            "B",
-            "D",
-            "E",
-            "F"
+          "event_values": [
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "B",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "D",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "F",
+              "event_operator": "plain",
+              "event_values": []
+            }
           ]
         }
       ],
       "sub": [
-        "B",
-        "AND(C.E.D.F)"
+        {
+          "event_type": "B",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "AND(C.E.D.F)",
+          "event_operator": "and",
+          "event_values": [
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "D",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "F",
+              "event_operator": "plain",
+              "event_values": []
+            }
+          ]
+        }
       ]
     },
     {
@@ -119,41 +346,141 @@
       "port": 2289,
       "pub": [
         {
+          "event_type": "SEQ(J.A)",
           "event_operator": "seq",
-          "event_type": [
-            "J",
-            "A"
+          "event_values": [
+            {
+              "event_type": "J",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "A",
+              "event_operator": "plain",
+              "event_values": []
+            }
           ]
         },
         {
+          "event_type": "AND(C.E.D.F)",
           "event_operator": "and",
-          "event_type": [
-            "C",
-            "E",
-            "D",
-            "F"
+          "event_values": [
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "D",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "F",
+              "event_operator": "plain",
+              "event_values": []
+            }
           ]
         },
         {
+          "event_type": "AND(C.E.B.D.F)",
           "event_operator": "and",
-          "event_type": [
-            "C",
-            "E",
-            "B",
-            "D",
-            "F"
+          "event_values": [
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "B",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "D",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "F",
+              "event_operator": "plain",
+              "event_values": []
+            }
           ]
         }
       ],
       "sub": [
-        "B",
-        "AND(C.E.D.F)",
-        "C",
-        "E",
-        "D",
-        "F",
-        "J",
-        "A"
+        {
+          "event_type": "B",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "AND(C.E.D.F)",
+          "event_operator": "and",
+          "event_values": [
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "D",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "F",
+              "event_operator": "plain",
+              "event_values": []
+            }
+          ]
+        },
+        {
+          "event_type": "C",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "E",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "D",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "F",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "J",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "A",
+          "event_operator": "plain",
+          "event_values": []
+        }
       ]
     },
     {
@@ -163,28 +490,133 @@
       "port": 2215,
       "pub": [
         {
+          "event_type": "AND(C.E.B.D.F)",
           "event_operator": "and",
-          "event_type": [
-            "C",
-            "E",
-            "B",
-            "D",
-            "F"
+          "event_values": [
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "B",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "D",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "F",
+              "event_operator": "plain",
+              "event_values": []
+            }
           ]
         },
         {
+          "event_type": "AND(E.SEQ(C.J.A))",
           "event_operator": "and",
-          "event_type": [
-            "E",
-            "SEQ(C.J.A)"
+          "event_values": [
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "SEQ(C.J.A)",
+              "event_operator": "seq",
+              "event_values": [
+                {
+                  "event_type": "C",
+                  "event_operator": "plain",
+                  "event_values": []
+                },
+                {
+                  "event_type": "J",
+                  "event_operator": "plain",
+                  "event_values": []
+                },
+                {
+                  "event_type": "A",
+                  "event_operator": "plain",
+                  "event_values": []
+                }
+              ]
+            }
           ]
         }
       ],
       "sub": [
-        "B",
-        "AND(C.E.D.F)",
-        "AND(E.SEQ(J.A))",
-        "C"
+        {
+          "event_type": "B",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "AND(C.E.D.F)",
+          "event_operator": "and",
+          "event_values": [
+            {
+              "event_type": "C",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "D",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "F",
+              "event_operator": "plain",
+              "event_values": []
+            }
+          ]
+        },
+        {
+          "event_type": "AND(E.SEQ(J.A))",
+          "event_operator": "and",
+          "event_values": [
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "SEQ(J.A)",
+              "event_operator": "seq",
+              "event_values": [
+                {
+                  "event_type": "J",
+                  "event_operator": "plain",
+                  "event_values": []
+                },
+                {
+                  "event_type": "A",
+                  "event_operator": "plain",
+                  "event_values": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "event_type": "C",
+          "event_operator": "plain",
+          "event_values": []
+        }
       ]
     },
     {
@@ -210,25 +642,119 @@
       "port": 2299,
       "pub": [
         {
+          "event_type": "AND(E.SEQ(J.A))",
           "event_operator": "and",
-          "event_type": [
-            "E",
-            "SEQ(J.A)"
+          "event_values": [
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "SEQ(J.A)",
+              "event_operator": "seq",
+              "event_values": [
+                {
+                  "event_type": "J",
+                  "event_operator": "plain",
+                  "event_values": []
+                },
+                {
+                  "event_type": "A",
+                  "event_operator": "plain",
+                  "event_values": []
+                }
+              ]
+            }
           ]
         },
         {
+          "event_type": "AND(E.SEQ(C.J.A))",
           "event_operator": "and",
-          "event_type": [
-            "E",
-            "SEQ(C.J.A)"
+          "event_values": [
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "SEQ(C.J.A)",
+              "event_operator": "seq",
+              "event_values": [
+                {
+                  "event_type": "C",
+                  "event_operator": "plain",
+                  "event_values": []
+                },
+                {
+                  "event_type": "J",
+                  "event_operator": "plain",
+                  "event_values": []
+                },
+                {
+                  "event_type": "A",
+                  "event_operator": "plain",
+                  "event_values": []
+                }
+              ]
+            }
           ]
         }
       ],
       "sub": [
-        "AND(E.SEQ(J.A))",
-        "C",
-        "E",
-        "SEQ(J.A)"
+        {
+          "event_type": "AND(E.SEQ(J.A))",
+          "event_operator": "and",
+          "event_values": [
+            {
+              "event_type": "E",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "SEQ(J.A)",
+              "event_operator": "seq",
+              "event_values": [
+                {
+                  "event_type": "J",
+                  "event_operator": "plain",
+                  "event_values": []
+                },
+                {
+                  "event_type": "A",
+                  "event_operator": "plain",
+                  "event_values": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "event_type": "C",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "E",
+          "event_operator": "plain",
+          "event_values": []
+        },
+        {
+          "event_type": "SEQ(J.A)",
+          "event_operator": "seq",
+          "event_values": [
+            {
+              "event_type": "J",
+              "event_operator": "plain",
+              "event_values": []
+            },
+            {
+              "event_type": "A",
+              "event_operator": "plain",
+              "event_values": []
+            }
+          ]
+        }
       ]
     }
   ]

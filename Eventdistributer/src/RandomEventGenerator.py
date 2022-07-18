@@ -4,7 +4,7 @@ import json
 import random
 from datetime import datetime, timedelta
 
-local = '127.0.0.1'
+host_adress = '127.0.0.1'
 
 
 def gen_datetime(min_year=2022, max_year=datetime.now().year):
@@ -60,23 +60,20 @@ def generate_list(event):
         for i in range(4):
             timelist.append(datetime.now() + timedelta(seconds=i))
         values.append('E')
-        values.append('C')
-        values.append('J')
-        values.append('A')
+        values.append('SEQ(C.J.A)')
         pis = ['5', '9']
         pi_id = random.choice(pis)
     if event == 'AND(E.SEQ(J.A)':
         for i in range(3):
             timelist.append(gen_datetime())
         values.append('E')
-        values.append('J')
-        values.append('A')
+        values.append('SEQ(J.A)')
         pi_id = '9'
     return pi_id, event_name, timelist, values, time_now
 
 
 def pub_events():
-    broker_con = Connection('admin', 'admin', [(local, 61613)], True)
+    broker_con = Connection('admin', 'admin', [(host_adress, 61613)], True)
     broker_con.connect()
     event_types = ['A', 'B', 'C', 'D', 'E', 'F', 'SEQ(A.F.C)', 'SEQ(J.A)', 'AND(C.E.D.F)', 'AND(C.E.B.D.F)', 'AND(E.SEQ(C.J.A)',
                    'AND(E.SEQ(J.A)']
