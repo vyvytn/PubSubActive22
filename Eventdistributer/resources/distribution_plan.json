@@ -1,134 +1,235 @@
 {
-    "pis": [
+  "pis": [
+    {
+      "ip": "192.168.1.142",
+      "node_id": "0",
+      "pi_id": "pi",
+      "port": 2235,
+      "pub": [
         {
-            "ip": "192.168.1.142",
-            "node_id": "0",
-            "pi_id": "pi",
-            "port": 2235,
-            "pub": [
-                {
-                    "event_operator": "seq",
-                    "event_type": "A,F,C"
-                },
-                {
-                    "event_operator": "and",
-                    "event_type": "C,E,B,D,F"
-                }
-            ],
-            "sub": ["A", "F", "C"]
+          "event_operator": "seq",
+          "event_type": [
+            "A",
+            "F",
+            "C"
+          ]
         },
         {
-            "ip": "192.168.2.228",
-            "node_id": "1",
-            "pi_id": "pi2",
-            "port": 2235,
-            "pub": [
-                {
-                    "event_operator": "and",
-                    "event_type":"C,E,B,D,F"
-                }
-            ],
-            "sub": ["B", "AND(CEDF)"]
-        },{
-            "ip": "192.168.1.143",
-            "node_id": "2",
-            "pi_id": "pi3",
-            "port": 2277,
-            "pub": [
-                {
-                    "event_operator": "and",
-                    "event_type": "C,E,D,F"
-                },
-                {
-                    "event_operator": "and",
-                    "event_type":"C,E,B,D,E,F"
-                }
-            ],
-            "sub": ["B", "AND(CEDF)", "C", "E", "D", "F"]
-        },
-        {
-            "ip": "192.168.1.144",
-            "node_id": "3",
-            "pi_id": "pi4",
-            "port": 2252,
-            "pub": [
-                {
-                    "event_operator": "and",
-                    "event_type": "C,E,B,D,E,F"
-                }
-            ],
-            "sub": ["B", "AND(CEDF)"]
-        },{
-            "ip": "192.168.1.145",
-            "node_id": "4",
-            "pi_id": "pi5",
-            "port": 2289,
-            "pub": [
-                {
-                    "event_operator": "seq",
-                    "event_type":"J,A"
-                },
-                {
-                    "event_operator": "and",
-                    "event_type":"C,E,D,F"
-                },
-                {
-                    "event_operator": "and",
-                    "event_type": "C,E,B,D,F"
-                }
-            ],
-            "sub": ["B", "AND(CEDF)", "C", "E", "D", "F", "J", "A"]
-        },
-        {
-            "ip": "192.168.1.146",
-            "node_id": "5",
-            "pi_id": "pi6",
-            "port": 2215,
-            "pub": [
-                {
-                    "event_operator": "and",
-                    "event_type":"C,E,B,D,F"
-                },
-                {
-                    "event_operator": "and",
-                    "event_type": "E,SEQ(CJA)"
-                }
-            ],
-            "sub": ["B", "AND(CEDF)",  "AND(ESEQ(JA))", "C"]
-        },
-        {
-            "ip": "192.168.1.147",
-            "node_id": "6",
-            "pi_id": "pi7",
-            "port": 2203,
-            "pub": [],
-            "sub": []
-        },
-        {
-            "ip": "192.168.1.148",
-            "node_id": "7",
-            "pi_id": "pi8",
-            "port": 2288,
-            "pub": [],
-            "sub": []
-        },
-        {
-            "ip": "192.168.1.149",
-            "node_id": "9",
-            "pi_id": "pi9",
-            "port": 2299,
-            "pub": [
-                {
-                    "event_operator": "and",
-                    "event_type": "E,SEQ(JA)"
-
-                },
-                {
-                    "event_operator": "and",
-                    "event_type": "E,SEQ(CJA)"
-                }
-            ],
-            "sub": ["AND(ESEQ(JA))", "C",  "E", "SEQ(JA)"]
+          "event_operator": "and",
+          "event_type": [
+            "C",
+            "E",
+            "B",
+            "D",
+            "F"
+          ]
         }
-    ]
+      ],
+      "sub": [
+        "A",
+        "F",
+        "C"
+      ]
+    },
+    {
+      "ip": "192.168.2.228",
+      "node_id": "1",
+      "pi_id": "pi2",
+      "port": 2235,
+      "pub": [
+        {
+          "event_operator": "and",
+          "event_type": [
+            "C",
+            "E",
+            "B",
+            "D",
+            "F"
+          ]
+        }
+      ],
+      "sub": [
+        "B",
+        "AND(C.E.D.F)"
+      ]
+    },
+    {
+      "ip": "192.168.1.143",
+      "node_id": "2",
+      "pi_id": "pi3",
+      "port": 2277,
+      "pub": [
+        {
+          "event_operator": "and",
+          "event_type": [
+            "C",
+            "E",
+            "D",
+            "F"
+          ]
+        },
+        {
+          "event_operator": "and",
+          "event_type": [
+            "C",
+            "E",
+            "B",
+            "D",
+            "E",
+            "F"
+          ]
+        }
+      ],
+      "sub": [
+        "B",
+        "AND(C.E.D.F)",
+        "C",
+        "E",
+        "D",
+        "F"
+      ]
+    },
+    {
+      "ip": "192.168.1.144",
+      "node_id": "3",
+      "pi_id": "pi4",
+      "port": 2252,
+      "pub": [
+        {
+          "event_operator": "and",
+          "event_type": [
+            "C",
+            "E",
+            "B",
+            "D",
+            "E",
+            "F"
+          ]
+        }
+      ],
+      "sub": [
+        "B",
+        "AND(C.E.D.F)"
+      ]
+    },
+    {
+      "ip": "192.168.1.145",
+      "node_id": "4",
+      "pi_id": "pi5",
+      "port": 2289,
+      "pub": [
+        {
+          "event_operator": "seq",
+          "event_type": [
+            "J",
+            "A"
+          ]
+        },
+        {
+          "event_operator": "and",
+          "event_type": [
+            "C",
+            "E",
+            "D",
+            "F"
+          ]
+        },
+        {
+          "event_operator": "and",
+          "event_type": [
+            "C",
+            "E",
+            "B",
+            "D",
+            "F"
+          ]
+        }
+      ],
+      "sub": [
+        "B",
+        "AND(C.E.D.F)",
+        "C",
+        "E",
+        "D",
+        "F",
+        "J",
+        "A"
+      ]
+    },
+    {
+      "ip": "192.168.1.146",
+      "node_id": "5",
+      "pi_id": "pi6",
+      "port": 2215,
+      "pub": [
+        {
+          "event_operator": "and",
+          "event_type": [
+            "C",
+            "E",
+            "B",
+            "D",
+            "F"
+          ]
+        },
+        {
+          "event_operator": "and",
+          "event_type": [
+            "E",
+            "SEQ(C.J.A)"
+          ]
+        }
+      ],
+      "sub": [
+        "B",
+        "AND(C.E.D.F)",
+        "AND(E.SEQ(J.A))",
+        "C"
+      ]
+    },
+    {
+      "ip": "192.168.1.147",
+      "node_id": "6",
+      "pi_id": "pi7",
+      "port": 2203,
+      "pub": [],
+      "sub": []
+    },
+    {
+      "ip": "192.168.1.148",
+      "node_id": "7",
+      "pi_id": "pi8",
+      "port": 2288,
+      "pub": [],
+      "sub": []
+    },
+    {
+      "ip": "192.168.1.149",
+      "node_id": "9",
+      "pi_id": "pi9",
+      "port": 2299,
+      "pub": [
+        {
+          "event_operator": "and",
+          "event_type": [
+            "E",
+            "SEQ(J.A)"
+          ]
+        },
+        {
+          "event_operator": "and",
+          "event_type": [
+            "E",
+            "SEQ(C.J.A)"
+          ]
+        }
+      ],
+      "sub": [
+        "AND(E.SEQ(J.A))",
+        "C",
+        "E",
+        "SEQ(J.A)"
+      ]
+    }
+  ]
 }

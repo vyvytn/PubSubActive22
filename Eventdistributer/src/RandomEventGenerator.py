@@ -24,20 +24,20 @@ def generate_list(event):
     if event == 'A' or event == 'B' or event == 'C' or event == 'D' or event == 'E' or event == 'F':
         timelist.append(gen_datetime())
         values.append(event)
-    if event == 'SEQ(JA)':
+    if event == 'SEQ(J.A)':
         for i in range(2):
             timelist.append(datetime.now() + timedelta(seconds=i))
         values.append('J')
         values.append('A')
         pi_id = '4'
-    if event == 'SEQ(AFC)':
+    if event == 'SEQ(A.F.C)':
         for i in range(3):
             timelist.append(datetime.now() + timedelta(seconds=i))
         values.append('A')
         values.append('F')
         values.append('C')
         pi_id = '0'
-    if event == 'AND(CEDF)':
+    if event == 'AND(C.E.D.F)':
         for i in range(4):
             timelist.append(gen_datetime())
         values.append('C')
@@ -46,7 +46,7 @@ def generate_list(event):
         values.append('F')
         pis = ['2', '4']
         pi_id = random.choice(pis)
-    if event == 'AND(CEBDF)':
+    if event == 'AND(C.E.B.D.F)':
         for i in range(5):
             timelist.append(gen_datetime())
         values.append('C')
@@ -56,7 +56,7 @@ def generate_list(event):
         values.append('F')
         pis = ['0', '1', '2', '3', '4', '5']
         pi_id = random.choice(pis)
-    if event == 'AND(E,SEQ(CJA)':
+    if event == 'AND(E.SEQ(C.J.A)':
         for i in range(4):
             timelist.append(datetime.now() + timedelta(seconds=i))
         values.append('E')
@@ -65,7 +65,7 @@ def generate_list(event):
         values.append('A')
         pis = ['5', '9']
         pi_id = random.choice(pis)
-    if event == 'AND(E,SEQ(JA)':
+    if event == 'AND(E.SEQ(J.A)':
         for i in range(3):
             timelist.append(gen_datetime())
         values.append('E')
@@ -78,9 +78,9 @@ def generate_list(event):
 def pub_events():
     broker_con = Connection('admin', 'admin', [(local, 61613)], True)
     broker_con.connect()
-    """event_types = ['A', 'B', 'C', 'D', 'E', 'F', 'SEQ(AFC)', 'SEQ(JA)', 'AND(CEDF)', 'AND(CEBDF)', 'AND(ESEQ(CJA)',
-                   'AND(ESEQ(JA)']"""
-    event_types = ['B', 'AND(CEDF)']
+    event_types = ['A', 'B', 'C', 'D', 'E', 'F', 'SEQ(A.F.C)', 'SEQ(J.A)', 'AND(C.E.D.F)', 'AND(C.E.B.D.F)', 'AND(E.SEQ(C.J.A)',
+                   'AND(E.SEQ(J.A)']
+    #event_types = ['B', 'AND(C.E.D.F)', 'SEQ(A.F.C)']
     evt = random.choice(event_types)
     pi_id, event, time_lst, value_lst, now = generate_list(evt)
     time_lst_str = [date_obj.strftime("%m/%d/%Y, %H:%M:%S") for date_obj in time_lst]
@@ -92,8 +92,9 @@ def pub_events():
         'timestamp': now
     })
     broker_con.publish_to_topic(topic=evt, message=body_content, id=pi_id)
+    print('generated event ', evt)
 
 
 for i in range(10000):
     pub_events()
-    time.sleep(3)
+    time.sleep(1)
