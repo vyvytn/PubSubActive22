@@ -7,9 +7,10 @@ import socket
 from utils.Loader import Loader
 from Client import Client
 
-my_pi = Client('127.0.0.1')
+my_pi = Client("127.0.0.1")
 my_pi.connect_to_broker()
 my_pi.sub_to_topics()
 
-while True:
+# while True:
+for i in range(20):
     my_pi.pub_to_topics()
