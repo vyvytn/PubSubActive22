@@ -14,7 +14,6 @@ def gen_datetime(min_year=2022, max_year=datetime.now().year):
     end = start + timedelta(days=365 * years)
     return start + (end - start) * random.random()
 
-
 def generate_list(event, data):
     timelist = []
     values = ''
@@ -25,38 +24,39 @@ def generate_list(event, data):
     if event == 'A' or event == 'B' or event == 'C' or event == 'D' or event == 'E' or event == 'F':
         timelist.append(gen_datetime())
         values = [item for item in data["events"] if item['event_type'] == event]
+        print()
     if event == 'SEQ(J.A)':
         for i in range(2):
             timelist.append(datetime.now() + timedelta(seconds=i))
-        values = [item for item in data["events"] if item['event_type'] == event]
+        values = [e for e in data["events"] if e['event_type'] == event]
         pi_id = '4'
     if event == 'SEQ(A.F.C)':
         for i in range(3):
             timelist.append(datetime.now() + timedelta(seconds=i))
-        values = [item for item in data["events"] if item['event_type'] == event]
+        values = [e for e in data["events"] if e['event_type'] == event]
         pi_id = '0'
     if event == 'AND(C.E.D.F)':
         for i in range(4):
             timelist.append(gen_datetime())
-        values = [item for item in data["events"] if item['event_type'] == event]
+        values = [e for e in data["events"] if e['event_type'] == event]
         pis = ['2', '4']
         pi_id = random.choice(pis)
     if event == 'AND(C.E.B.D.F)':
         for i in range(5):
             timelist.append(gen_datetime())
-        values = [item for item in data["events"] if item['event_type'] == event]
+        values = [e for e in data["events"] if e['event_type'] == event]
         pis = ['0', '1', '2', '3', '4', '5']
         pi_id = random.choice(pis)
     if event == 'AND(E.SEQ(C.J.A)':
         for i in range(2):
             timelist.append(datetime.now() + timedelta(seconds=i))
-        values = [item for item in data["events"] if item['event_type'] == event]
+        values = [e for e in data["events"] if e['event_type'] == event]
         pis = ['5', '9']
         pi_id = random.choice(pis)
     if event == 'AND(E.SEQ(J.A)':
         for i in range(2):
             timelist.append(datetime.now() + timedelta(seconds=i))
-        values = [item for item in data["events"] if item['event_type'] == event]
+        values = [e for e in data["events"] if e['event_type'] == event]
         pi_id = '9'
     return pi_id, event_name, timelist, values, time_now
 

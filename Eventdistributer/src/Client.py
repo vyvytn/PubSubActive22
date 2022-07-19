@@ -20,19 +20,52 @@ def create_body(content):
     return message
 
 
-def and_operator(self, sub, query, messages):
+def and_operator(self, sub, query, messages, timelist=None):
+    published_events = [e["event_type"] for e in query]
+    subscribed_events = [e["event_type"] for e in sub]
+    goal_number = []
+    needed_events1 = []
+    needed_events2 = []
+    generated_event = []
+    incoming_events = []
     messages_parsed = []
-    for m in messages:
-        messages_parsed.append(json.loads(m))
-    incoming_events = [m for m in messages_parsed]
-    print(incoming_events)
-    #print([e["event_type"] for e in sub])
-    #print([e["event_type"] for e in query])
-    """if set(sub).issubset(incoming_events):
-        #some action
-        #self.finished = True
-    else:
-        return"""
+    for e in query:
+        goal_number.append(len(e["event_values"]))
+        #needed_events.append([event["event_type"] for event in e["event_values"]])
+        # needed_events[0]
+    if query[0]["event_type"] == 'AND(C.E.B.D.F)':
+        needed_events1 = ['B', 'AND(C.E.D.F)']
+    if query[0]["event_type"] == 'AND(E.SEQ(C.J.A))':
+        needed_events2 = ['C', 'AND(E.SEQ(J.A))']
+    while not self.finished:
+        messages_parsed = []
+        for m in messages:
+            messages_parsed.append(json.loads(m))
+        incoming_events = [m for m in messages_parsed]
+        print('number event', len(incoming_events))
+        for event in incoming_events:
+            print('event', event["eventtype"])
+            if len(needed_events1) == 0 :
+                print('FINISHED')
+                #publish to topic
+            if len(needed_events2) == 0 :
+                print('FINISHED')
+                #publish to topic
+            if event["eventtype"] == 'B' and 'B' in needed_events1:
+                generated_event.append(event)
+                needed_events1.remove(event["eventtype"])
+            if event["eventtype"] == 'C' and 'C' in needed_events2:
+                generated_event.append(event)
+                needed_events2.remove(event["eventtype"])
+            if event["eventtype"] == 'AND(C.E.D.F)' and 'AND(C.E.D.F)' in needed_events1:
+                generated_event.append(event)
+                needed_events1.remove(event["eventtype"])
+            if event["eventtype"] == 'AND(E.SEQ(J.A)' and 'AND(E.SEQ(J.A)' in needed_events2:
+                generated_event.append(event)
+                needed_events2.remove(event["eventtype"])
+            break
+        break
+    return generated_event
 
 
 def seq_operator(self, sub, query, messages):
@@ -76,10 +109,9 @@ class Client:
     def pub_to_topics(self):
         self.finished = False
         for e in self.reader.get_pub():
-            while not self.finished:
-                if e['event_operator'] == 'and':
-                    self.messages = self.my_Listener.msg_list
-                    and_operator(self, self.reader.get_sub(), [e], self.messages)
-                elif e['event_operator'] == 'seq':
-                    self.messages = self.my_Listener.msg_list
-                    seq_operator(self, self.reader.get_sub(), [e], self.messages)
+            if e['event_operator'] == 'and':
+                # self.messages = self.my_Listener.msg_list
+                and_operator(self, self.reader.get_sub(), [e], self.my_Listener.msg_list)
+            elif e['event_operator'] == 'seq':
+                self.messages = self.my_Listener.msg_list
+                seq_operator(self, self.reader.get_sub(), [e], self.messages)
