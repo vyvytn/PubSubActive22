@@ -1,26 +1,15 @@
+import time
+
 from Connector import Connection
 from Listener import Listener
 import json
+import socket
+from utils.Loader import Loader
+from Client import Client
 
-# read json
-with open("../network-plan.json", "r") as f:
-    file_plan = json.load(f)
+my_pi = Client('127.0.0.1')
+my_pi.connect_to_broker()
+my_pi.sub_to_topics()
 
-pis = []
-for i in file_plan:
-    pis.append(i)
-
-for data in file_plan['pi_list']:
-    print(data)
-
-
-broker_con = Connection('admin', 'admin', [('127.0.0.1', 61613)], True)
-
-broker_con.register_listener(Listener, 'listenerToTopic')
-
-broker_con.connect()
-
-broker_con.subscribe_to_topic('myTestTopic')
-
-for i in range(0, 10000, 1):
-    broker_con.publish_to_topic('myTestTopic', ' testing')
+while True:
+    my_pi.pub_to_topics()
