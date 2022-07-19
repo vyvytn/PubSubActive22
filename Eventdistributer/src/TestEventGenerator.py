@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 host_adress = '127.0.0.1'
 
-#create here the test set you want to publish
+# create the order of the test set you want to publish here. Events will be created in pubevents.
 test = ['J', 'A', 'B', 'C', 'A', 'E', 'D', 'F', 'A', 'F', 'J']
 
 # start iteration at 0
