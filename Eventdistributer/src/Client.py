@@ -1,3 +1,4 @@
+from ast import Load
 import json
 import time
 from datetime import datetime
@@ -5,7 +6,6 @@ import socket
 from utils.Loader import Loader
 from Connector import Connection
 from Listener import Listener
-from stomp import *
 import numpy as np
 
 test = True
@@ -22,13 +22,7 @@ def create_body(content):
     return message
 
 
-def test_for_patternmatch_and_cebdf(received_events):
-    pattern = ["b", "AND(C.E.D.F)"]
-    if np.in1d(pattern, received_events).all():
-        print("publish event ", pattern)
-        return []
-    else:
-        return received_events
+
 
 
 def and_operator(self, sub, query, messages, timelist=None):
@@ -127,23 +121,47 @@ class Client:
         for e in self.reader.get_sub():
             subscriptions.append(e["event_type"])
 
-        print("subs: ", subscriptions)
         for sub in subscriptions:
             self.broker_con.subscribe_to_topic(sub, self.my_data["node"])
 
     def pub_to_topics(self):
         self.finished = False
-        # time.sleep(2)
-        print("pub to topic restart")
-        # for e in self.reader.get_pub():
-        #     if e["event_operator"] == "and":
-        #         # self.messages = self.my_Listener.msg_list
-        #         and_operator(
-        #             self, self.reader.get_sub(), [e], self.my_Listener.msg_list
-        #         )
-        #     elif e["event_operator"] == "seq":
-        #         self.messages = self.my_Listener.msg_list
-        #         seq_operator(self, self.reader.get_sub(), [e], self.messages)
+        needed_events1 = []
+        needed_events2 = []
+        generated_event1 = []
+        generated_event2 = []
+        incoming_events = []
+        messages_parsed = []
 
-        print(self.my_Listener.msg_list)
-        self.my_Listener.on_message("say hi")
+        needed_events1 = ["B", "AND(C.E.D.F)"]
+
+        needed_events2 = ["C", "AND(E.SEQ(J.A))"]
+
+        for event in messages_parsed:
+            print("eventtype", event["eventtype"])
+
+            if event["eventtype"] == "B":
+                if "B" in needed_events1 and event not in generated_event1:
+                    generated_event1.append(event)
+                    generated_event1 = test_for_patternmatch_and_cebdf(generated_event1)
+
+            if (
+                event["eventtype"] == "AND(C.E.D.F)"
+                and "AND(C.E.D.F)" in needed_events1
+                and event["eventtype"] not in needed_events1
+            ):
+                generated_event1.append(event)
+                generated_event1 = test_for_patternmatch_and_cebdf(generated_event1)
+
+            # if event["eventtype"] == "C" and "C" in needed_events2:
+            #     generated_event2.append(event)
+            #     needed_events2.remove(event["eventtype"])
+
+            # if (
+            #     event["eventtype"] == "AND(E.SEQ(J.A)"
+            #     and "AND(E.SEQ(J.A)" in needed_events2
+            # ):
+            #     generated_event2.append(event)
+            #     needed_events2.remove(event["eventtype"])
+
+            incoming_events.remove(event)
