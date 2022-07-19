@@ -5,6 +5,7 @@ import socket
 from utils.Loader import Loader
 from Connector import Connection
 from Listener import Listener
+from stomp import *
 import numpy as np
 
 test = True
@@ -24,7 +25,7 @@ def create_body(content):
 def test_for_patternmatch_and_cebdf(received_events):
     pattern = ["b", "AND(C.E.D.F)"]
     if np.in1d(pattern, received_events).all():
-        ("publish event ", pattern)
+        print("publish event ", pattern)
         return []
     else:
         return received_events
@@ -61,25 +62,28 @@ def and_operator(self, sub, query, messages, timelist=None):
             print("eventtype", event["eventtype"])
 
             if event["eventtype"] == "B":
-                if event not in generated_event1:
+                if "B" in needed_events1 and event not in generated_event1:
                     generated_event1.append(event)
                     generated_event1 = test_for_patternmatch_and_cebdf(generated_event1)
 
-            if event["eventtype"] == "C" and "C" in needed_events2:
-                generated_event2.append(event)
-                needed_events2.remove(event["eventtype"])
             if (
                 event["eventtype"] == "AND(C.E.D.F)"
                 and "AND(C.E.D.F)" in needed_events1
+                and event["eventtype"] not in needed_events1
             ):
                 generated_event1.append(event)
-                needed_events1.remove(event["eventtype"])
-            if (
-                event["eventtype"] == "AND(E.SEQ(J.A)"
-                and "AND(E.SEQ(J.A)" in needed_events2
-            ):
-                generated_event2.append(event)
-                needed_events2.remove(event["eventtype"])
+                generated_event1 = test_for_patternmatch_and_cebdf(generated_event1)
+
+            # if event["eventtype"] == "C" and "C" in needed_events2:
+            #     generated_event2.append(event)
+            #     needed_events2.remove(event["eventtype"])
+
+            # if (
+            #     event["eventtype"] == "AND(E.SEQ(J.A)"
+            #     and "AND(E.SEQ(J.A)" in needed_events2
+            # ):
+            #     generated_event2.append(event)
+            #     needed_events2.remove(event["eventtype"])
 
             incoming_events.remove(event)
 
@@ -129,14 +133,17 @@ class Client:
 
     def pub_to_topics(self):
         self.finished = False
-        print("pubs: ", self.reader.get_pub())
-        time.sleep(2)
-        for e in self.reader.get_pub():
-            if e["event_operator"] == "and":
-                # self.messages = self.my_Listener.msg_list
-                and_operator(
-                    self, self.reader.get_sub(), [e], self.my_Listener.msg_list
-                )
-            elif e["event_operator"] == "seq":
-                self.messages = self.my_Listener.msg_list
-                seq_operator(self, self.reader.get_sub(), [e], self.messages)
+        # time.sleep(2)
+        print("pub to topic restart")
+        # for e in self.reader.get_pub():
+        #     if e["event_operator"] == "and":
+        #         # self.messages = self.my_Listener.msg_list
+        #         and_operator(
+        #             self, self.reader.get_sub(), [e], self.my_Listener.msg_list
+        #         )
+        #     elif e["event_operator"] == "seq":
+        #         self.messages = self.my_Listener.msg_list
+        #         seq_operator(self, self.reader.get_sub(), [e], self.messages)
+
+        print(self.my_Listener.msg_list)
+        self.my_Listener.on_message("say hi")

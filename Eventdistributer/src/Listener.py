@@ -2,7 +2,7 @@ import time
 import logging
 import stomp
 
-log = logging.getLogger('listener.py')
+log = logging.getLogger("listener.py")
 
 """
     This class extends the stomp Connection Listener class and hence it overrides the some of the
@@ -13,19 +13,24 @@ log = logging.getLogger('listener.py')
 
 class Listener(stomp.PrintingListener):
     """
-        Called by the STOMP connection once a TCP/IP connection to the
-        STOMP server has been established or re-established.
+    Called by the STOMP connection once a TCP/IP connection to the
+    STOMP server has been established or re-established.
     """
+
     def __init__(self):
         super().__init__()
         self.msg_list = []
 
     def on_connecting(self, host_and_port):
         now = int(time.time())
-        log.debug("STOMP connection initiated at  message server at %s  ", str(now) + " at host and port "
-                  + str(host_and_port))
-        print("STOMP connection initiated at  message server at %s  ", str(now) + " at host and port "
-              + str(host_and_port))
+        log.debug(
+            "STOMP connection initiated at  message server at %s  ",
+            str(now) + " at host and port " + str(host_and_port),
+        )
+        print(
+            "STOMP connection initiated at  message server at %s  ",
+            str(now) + " at host and port " + str(host_and_port),
+        )
 
     """
         Called by the STOMP connection when a CONNECTED frame is
