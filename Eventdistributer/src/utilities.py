@@ -84,7 +84,7 @@ def test_for_patternmatch_and(pi, goal, pattern, event, received_events):
     else:
         return received_events
 
-    if np.in1d(pattern, plain_recieved).all():
+    if len(pattern) == len(received_events):
         print("publish event AND", plain_recieved)
         open_pub(pi, goal)
         return []
