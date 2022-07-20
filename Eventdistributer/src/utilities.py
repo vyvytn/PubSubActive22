@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 import json
 import random
-import numpy as np
 import pandas as pd
 
 
