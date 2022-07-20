@@ -8,8 +8,14 @@ host_adress = "127.0.0.1"
 
 # create the order of the test set you want to publish here. Events will be created in pubevents.
 test = [
-    "C", "B", "AND(C.E.D.F)",
     "C",
+    "B",
+    "AND(C.E.D.F)",
+    "J",
+    "A",
+    "A",
+    "F",
+    "C" "C",
     "B",
     "A",
     "AND(E.SEQ(J.A))",
@@ -107,27 +113,7 @@ def pub_events(data, test):
     evt = test[j]
     j = j + 1
     pi_id, event, time_lst, value_lst, now = generate_list(evt, data)
-    print(
-        "time list before transform. Type: ", type(time_lst), " \n content: ", time_lst
-    )
     time_lst_str = [[date_obj.strftime("%m/%d/%Y, %H:%M:%S") for date_obj in time_lst]]
-    print(
-        "time list after transform. Type: ",
-        type(time_lst_str),
-        "\nLänge: ",
-        len(time_lst_str),
-        " \n content: ",
-        time_lst_str,
-    )
-
-    print(
-        "this is values Type: ",
-        type(value_lst),
-        "\nLänge: ",
-        len(value_lst),
-        " \n content: ",
-        value_lst,
-    )
 
     body_content = json.dumps(
         {
