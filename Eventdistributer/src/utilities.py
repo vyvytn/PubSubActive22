@@ -75,7 +75,6 @@ def generate_list(event, data):
 # matched incoming complex AND-events
 # pi - brokerclient, goal - event tp be published, pattern - subscribed events for goal, event - incoming eventtype, received_events - all relevent events since last matched
 def test_for_patternmatch_and(pi, goal, pattern, event, received_events):
-    print(type(received_events))
     plain_recieved = []
     for e in received_events:
         plain_recieved.append(e["eventtype"])
@@ -110,7 +109,7 @@ def test_for_patternmatch_seq(pi, pattern, event, df_received_events):
         and (pattern[1] == sorted_df["eventtype"].iloc[1])
     ):
         if len(pattern) == 2:
-            print("publish event SEQUENCE", sorted_df["eventtype"])
+            print("\n publish event SEQUENCE for: \n", sorted_df["eventtype"])
             open_pub(pi)
             return pd.DataFrame()
         elif (
@@ -118,7 +117,8 @@ def test_for_patternmatch_seq(pi, pattern, event, df_received_events):
             and len(df_received_events) > 2
             and (pattern[2] == sorted_df["eventtype"].iloc[2])
         ):
-            print("publish event SEQUENCE", sorted_df["eventtype"])
+            print("\n publish event SEQUENCE for: \n", sorted_df["eventtype"])
+            open_pub(pi)
             return pd.DataFrame()
         else:
             return df_received_events
