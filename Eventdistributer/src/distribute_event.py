@@ -11,7 +11,69 @@ from Client import Client
 import numpy as np
 import pandas as pd
 
+import time
+from Connector import Connection
+import json
+import random
+from datetime import datetime, timedelta
+
+
 pd.set_option("display.max_columns", None)
+
+#     pub_combined_events(data, recieved_events)
+
+def generate_list(goal, data):
+    #event = "AND(C.E.B.D.F)"
+    timelist = []
+    values = ""
+    pi_id = ""
+    event_name = event
+    time_now = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+    # print(data)
+    if (
+        event == "A"
+        or event == "B"
+        or event == "C"
+        or event == "D"
+        or event == "E"
+        or event == "F"
+    ):
+        timelist.append(gen_datetime())
+        values = [item for item in data["events"] if item["event_type"] == event]
+        print()
+    if event == "AND(C.E.B.D.F)":
+        for i in range(5):
+            timelist.append(gen_datetime())
+        values = [e for e in data["events"] if e["event_type"] == event]
+        pis = ["0", "1", "2", "3", "4", "5"]
+        pi_id = random.choice(pis)
+
+    if event == "AND(C.E.D.F)":
+        for i in range(4):
+            timelist.append(gen_datetime())
+        values = [e for e in data["events"] if e["event_type"] == event]
+        pis = ["2", "4"]
+        pi_id = random.choice(pis)
+    return pi_id, event_name, timelist, values, time_now
+
+
+def pub_and_event(goal, data):
+    print("TYPE GOAL: ", goal, type(goal))
+    pi_id, event, time_lst, value_lst, now = generate_list(goal, data)
+
+    time_lst_str = [[date_obj.strftime("%m/%d/%Y, %H:%M:%S") for date_obj in time_lst]]
+    body_content = json.dumps(
+        {
+            "pi_id": pi_id,
+            "eventtype": event,
+            "timestamps": time_lst_str,
+            "values": value_lst,
+            "timestamp": now,
+        }
+    )
+
+    my_pi.broker_con.publish_to_topic(topic=goal, message=body_content, id=pi_id)
+    print("generated event FOR 'AND': ", goal)
 
 
 def test_for_patternmatch_and(pattern, event, received_events):
@@ -26,7 +88,11 @@ def test_for_patternmatch_and(pattern, event, received_events):
     if np.in1d(pattern, plain_recieved).all():
         print(
             "publish event AND", plain_recieved
-        )  # hier bitte publish methode ranbauen Emma, in recieved events sind alle daten der teil events
+        )
+        with open("./../resources/EventTree.json", "r") as f:
+            goal = "AND(C.E.B.D.F)"
+            data = json.load(f)
+            pub_and_event(goal, data)   
         return []
     else:
         return received_events
@@ -132,6 +198,7 @@ def test_for_patternmatch_complex_seq(pattern, event, received_events):
 my_pi = Client("127.0.0.1")
 my_pi.connect_to_broker()
 my_pi.sub_to_topics()
+print("my_pi.reader.get_pub() ",my_pi.reader.get_pub())
 messages_parsed = []
 needed_events1 = ["B", "AND(C.E.D.F)"]  # emma: das sind die Teil events
 detected_events_for_pub1 = []
