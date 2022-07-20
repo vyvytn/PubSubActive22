@@ -29,7 +29,7 @@ def generate_list(goal, data):
     timelist = []
     values = ""
     pi_id = ""
-    event_name = event
+    event_name = goal
     time_now = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
     # print(data)
     if (
@@ -43,19 +43,40 @@ def generate_list(goal, data):
         timelist.append(gen_datetime())
         values = [item for item in data["events"] if item["event_type"] == event]
         print()
-    if event == "AND(C.E.B.D.F)":
-        for i in range(5):
-            timelist.append(gen_datetime())
+    if event == "SEQ(J.A)":
+        for i in range(2):
+            timelist.append(datetime.now() + timedelta(seconds=i))
         values = [e for e in data["events"] if e["event_type"] == event]
-        pis = ["0", "1", "2", "3", "4", "5"]
-        pi_id = random.choice(pis)
-
+        pi_id = "4"
+    if event == "SEQ(A.F.C)":
+        for i in range(3):
+            timelist.append(datetime.now() + timedelta(seconds=i))
+        values = [e for e in data["events"] if e["event_type"] == event]
+        pi_id = "0"
     if event == "AND(C.E.D.F)":
         for i in range(4):
             timelist.append(gen_datetime())
         values = [e for e in data["events"] if e["event_type"] == event]
         pis = ["2", "4"]
         pi_id = random.choice(pis)
+    if event == "AND(C.E.B.D.F)":
+        for i in range(5):
+            timelist.append(gen_datetime())
+        values = [e for e in data["events"] if e["event_type"] == event]
+        pis = ["0", "1", "2", "3", "4", "5"]
+        pi_id = random.choice(pis)
+    if event == "AND(E.SEQ(C.J.A)":
+        for i in range(2):
+            timelist.append(datetime.now() + timedelta(seconds=i))
+        values = [e for e in data["events"] if e["event_type"] == event]
+        pis = ["5", "9"]
+        pi_id = random.choice(pis)
+    if event == "AND(E.SEQ(J.A)":
+        for i in range(2):
+            timelist.append(datetime.now() + timedelta(seconds=i))
+        values = [e for e in data["events"] if e["event_type"] == event]
+        pi_id = "9"
+
     return pi_id, event_name, timelist, values, time_now
 
 
@@ -169,6 +190,10 @@ def test_for_patternmatch_complex_seq(pattern, event, received_events):
             < df_value_timestamp["timestamp"].iloc[1]
         ):
             print("publish event SEQUENCE", pattern)
+            with open("./../resources/EventTree.json", "r") as f:
+                goal = "AND(E.SEQ(C.J.A)"
+                data = json.load(f)
+                pub_and_event(goal, data)   
             return pd.DataFrame()
     else:
         return df_recieved_events
@@ -193,6 +218,7 @@ detected_events_for_pub3 = pd.DataFrame()
 
 needed_events4 = ["C", "B", "AND(C.E.D.F)"]
 detected_events_for_pub4 = pd.DataFrame()
+
 i = 0
 while i in range(100):
     time.sleep(2)
