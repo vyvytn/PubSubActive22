@@ -4,7 +4,12 @@ import json
 import random
 from datetime import datetime, timedelta
 
+# host is currently local
+# need to be changed if not local e.g. Ip adress of another RP
 host_adress = "127.0.0.1"
+
+# set true if you want random events
+random_events = False
 
 # create the order of the test set you want to publish here. Events will be created in pubevents.
 test = [
@@ -37,6 +42,7 @@ test = [
 j = 0
 
 
+# generates a random timestamp
 def gen_datetime(min_year=2022, max_year=datetime.now().year):
     # generate a datetime in format yyyy-mm-dd hh:mm:ss.000000
     start = datetime(min_year, 1, 1, 00, 00, 00)
@@ -45,24 +51,23 @@ def gen_datetime(min_year=2022, max_year=datetime.now().year):
     return start + (end - start) * random.random()
 
 
+# generates event object
 def generate_list(event, data):
     timelist = []
     values = ""
     pi_id = ""
     event_name = event
     time_now = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
-    # print(data)
     if (
-        event == "A"
-        or event == "B"
-        or event == "C"
-        or event == "D"
-        or event == "E"
-        or event == "F"
+            event == "A"
+            or event == "B"
+            or event == "C"
+            or event == "D"
+            or event == "E"
+            or event == "F"
     ):
         timelist.append(gen_datetime())
         values = [item for item in data["events"] if item["event_type"] == event]
-        print()
     if event == "SEQ(J.A)":
         for i in range(2):
             timelist.append(datetime.now() + timedelta(seconds=i))
@@ -106,15 +111,20 @@ def generate_list(event, data):
     return pi_id, event_name, timelist, values, time_now
 
 
+# published mocked events to broker
 def pub_events(data, test):
     broker_con = Connection("admin", "admin", [(host_adress, 61613)], True)
     broker_con.connect()
     global j
     evt = test[j]
     j = j + 1
-    pi_id, event, time_lst, value_lst, now = generate_list(evt, data)
+    if random_events:
+        event_types = [e["event_type"] for e in data["events"]]
+        evt = random.choice(event_types)
+        pi_id, event, time_lst, value_lst, now = generate_list(evt, data)
+    else:
+        pi_id, event, time_lst, value_lst, now = generate_list(evt, data)
     time_lst_str = [[date_obj.strftime("%m/%d/%Y, %H:%M:%S") for date_obj in time_lst]]
-
     body_content = json.dumps(
         {
             "pi_id": pi_id,
@@ -124,9 +134,7 @@ def pub_events(data, test):
             "timestamp": now,
         }
     )
-
     broker_con.publish_to_topic(topic=evt, message=body_content, id=pi_id)
-    print("generated event ", evt)
 
 
 with open("./../resources/EventTree.json", "r") as f:
