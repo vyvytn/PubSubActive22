@@ -7,7 +7,22 @@ from datetime import datetime, timedelta
 host_adress = "127.0.0.1"
 
 # create the order of the test set you want to publish here. Events will be created in pubevents.
-test = ["C", "D", "B", "AND(C.E.D.F)", "A", "B", "C", "A", "E", "D", "F", "A", "F", "J"]
+test = [
+    "C",
+    "AND(E.SEQ(J.A))",
+    "B",
+    "AND(C.E.D.F)",
+    "A",
+    "B",
+    "C",
+    "A",
+    "E",
+    "D",
+    "F",
+    "A",
+    "F",
+    "J",
+]
 
 # start iteration at 0
 j = 0
@@ -61,17 +76,24 @@ def generate_list(event, data):
         values = [e for e in data["events"] if e["event_type"] == event]
         pis = ["0", "1", "2", "3", "4", "5"]
         pi_id = random.choice(pis)
-    if event == "AND(E.SEQ(C.J.A)":
+    if event == "AND(E.SEQ(C.J.A))":
         for i in range(2):
             timelist.append(datetime.now() + timedelta(seconds=i))
             values = [e for e in data["events"] if e["event_type"] == event]
             pis = ["5", "9"]
             pi_id = random.choice(pis)
-            if event == "AND(E.SEQ(J.A)":
+            if event == "AND(E.SEQ(J.A))":
                 for i in range(2):
                     timelist.append(datetime.now() + timedelta(seconds=i))
                     values = [e for e in data["events"] if e["event_type"] == event]
                     pi_id = "9"
+    if event == "AND(E.SEQ(J.A))":
+        for i in range(2):
+            timelist.append(
+                datetime.now() + timedelta(seconds=40) + timedelta(seconds=i)
+            )
+            values = [e for e in data["events"] if e["event_type"] == event]
+        pi_id = "9"
     return pi_id, event_name, timelist, values, time_now
 
 
@@ -82,7 +104,28 @@ def pub_events(data, test):
     evt = test[j]
     j = j + 1
     pi_id, event, time_lst, value_lst, now = generate_list(evt, data)
-    time_lst_str = [date_obj.strftime("%m/%d/%Y, %H:%M:%S") for date_obj in time_lst]
+    print(
+        "time list before transform. Type: ", type(time_lst), " \n content: ", time_lst
+    )
+    time_lst_str = [[date_obj.strftime("%m/%d/%Y, %H:%M:%S") for date_obj in time_lst]]
+    print(
+        "time list after transform. Type: ",
+        type(time_lst_str),
+        "\nLänge: ",
+        len(time_lst_str),
+        " \n content: ",
+        time_lst_str,
+    )
+
+    print(
+        "this is values Type: ",
+        type(value_lst),
+        "\nLänge: ",
+        len(value_lst),
+        " \n content: ",
+        value_lst,
+    )
+
     body_content = json.dumps(
         {
             "pi_id": pi_id,
@@ -101,4 +144,4 @@ with open("./../resources/EventTree.json", "r") as f:
     data = json.load(f)
     while j < len(test):
         pub_events(data, test)
-        time.sleep(2)
+        time.sleep(4)
