@@ -8,7 +8,10 @@ host_adress = "127.0.0.1"
 
 # create the order of the test set you want to publish here. Events will be created in pubevents.
 test = [
+    "C", "B", "AND(C.E.D.F)",
     "C",
+    "B",
+    "A",
     "AND(E.SEQ(J.A))",
     "B",
     "AND(C.E.D.F)",
